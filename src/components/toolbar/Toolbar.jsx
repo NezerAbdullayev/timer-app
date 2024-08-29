@@ -1,23 +1,32 @@
 // import components
+import { Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import Button from '../Button/Button';
 
 // import icons
-import { FaSortDown, FaSortUp } from 'react-icons/fa6';
-
-import { BsSortDown } from "react-icons/bs";
-import { BsSortUp } from "react-icons/bs";
-
-function Toolbar({sort=true}) {
+import { BsSortDown } from 'react-icons/bs';
+import { BsSortUp } from 'react-icons/bs';
+import FlexRow from '../FlexRow';
 
 
+function Toolbar({ sort = true }) {
     return (
-        <div className='flex justify-end items-center gap-8'>
-            {/* create new button */}
-            <Button type="create">+</Button>
+        <FlexRow className="items-center justify-end gap-4">
+            
+            {/* create button */}
+            <Fab color="primary" aria-label="add"  sx={{ width: '35px', height: '35px' }}>
+                <AddIcon  sx={{ fontSize: '16px' }} />
+            </Fab>
 
             {/* sort and edit button */}
-            <Button type="sort"> {sort ? <BsSortDown />: <BsSortUp /> } </Button>
-        </div>
+            <Button type="sort">
+                {sort ? <BsSortDown /> : <BsSortUp />}{' '}
+            </Button>
+
+            {/* theme button */}
+            <Button type="them">dark</Button>
+
+        </FlexRow>
     );
 }
 

@@ -1,14 +1,26 @@
-import Box from './Box';
 
-function BoxContainer({ items }) {
+// import components
+import Box from './Box';
+import FlexRow from "../FlexRow"
+
+function BoxGroup({ items }) {
     return (
-        <div className="flex flex-col-reverse gap-5">
+        <FlexRow className="flex-col-reverse justify-center gap-4 overflow-y-auto w-full mb-5 mt-1">
+            {/* items map */}
             {items.length &&
                 items.map((item) => (
-                    <Box key={item.id} date={item.date} hour={item.hour} />
+                    <Box
+                        key={item.id}
+                        id={item.id}
+                        date={item.date}
+                        hour={item.hour}
+                        isActive={item.isActive}
+                        history={item.history}
+                    />
                 ))}
-        </div>
+
+        </FlexRow>
     );
 }
 
-export default BoxContainer;
+export default BoxGroup;

@@ -1,6 +1,6 @@
-function Row({children}) {
+function Row({children,className}) {
     return (
-        <div className="flex justify-between items-center gap-10 ">
+        <div className={className}>
             {children}
         </div>
     )
