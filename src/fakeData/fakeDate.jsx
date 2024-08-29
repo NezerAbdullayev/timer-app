@@ -36,3 +36,25 @@ export const alarms=[
         history:"10 Aug"
     }
 ]
+
+
+export const worldClock=[
+    {
+        id:"r432",
+        cityName:"London",
+        comparison:"3 hours behind",
+        clockTime:"04:05"
+    },
+    {
+        id:"431d",
+        cityName:"Kuba",
+        comparison: "4 houra getAutoHeightDuration,Tomorrow",
+        clockTime:"23:02"
+    },
+    {
+        id:"430d",
+        cityName:"Baku",
+        comparison: "Location time zone" ,
+        clockTime:"23:50"
+    }
+]

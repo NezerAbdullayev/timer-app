@@ -1,6 +1,6 @@
 function Row({children,className}) {
     return (
-        <div className={className}>
+        <div className={className ? className : ''}>
             {children}
         </div>
     )

@@ -1,15 +1,14 @@
-
 // import components
-import Box from './Box';
-import FlexRow from "../FlexRow"
+import AlarmsBox from './AlarmsBox';
+import GroupContainer from '../GroupContainer';
 
-function BoxGroup({ items }) {
+function AlarmsBoxGroup({ items }) {
     return (
-        <FlexRow className="flex-col-reverse justify-center gap-4 overflow-y-auto w-full mb-5 mt-1">
+        <GroupContainer>
             {/* items map */}
             {items.length &&
                 items.map((item) => (
-                    <Box
+                    <AlarmsBox
                         key={item.id}
                         id={item.id}
                         date={item.date}
@@ -18,9 +17,8 @@ function BoxGroup({ items }) {
                         history={item.history}
                     />
                 ))}
-
-        </FlexRow>
+        </GroupContainer>
     );
 }
 
-export default BoxGroup;
+export default AlarmsBoxGroup;

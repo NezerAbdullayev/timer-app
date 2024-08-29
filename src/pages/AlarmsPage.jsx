@@ -1,13 +1,14 @@
+// import fake data
+import { alarms } from '../fakeData/fakeDate';
 // import component
-import BoxGroup from '../components/boxContainer/BoxContainer';
+import AlarmsBoxGroup from '../components/boxGroup/alarmsGroup/AlarmsBoxGroup';
 import Toolbar from '../components/toolbar/Toolbar';
 import PageTitle from '../components/pageTitle/PageTitle';
-import { alarms } from '../fakeData/fakeDate';
-
+import GridColoms from '../components/GridColoms';
 
 function AlarmsPage() {
     return (
-        <div className='grid grid-rows-[20%_15%_65%] h-full'>
+        <GridColoms>
             <PageTitle
                 title="alarm in 10 hours 51 minutes"
                 desc="the 29 Aug, 07:50"
@@ -15,9 +16,9 @@ function AlarmsPage() {
 
             <Toolbar />
 
-            <BoxGroup items={alarms}/>
-
-        </div>
+            <AlarmsBoxGroup items={alarms} />
+            
+        </GridColoms>
     );
 }
 

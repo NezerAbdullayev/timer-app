@@ -1,8 +1,8 @@
-import BoxContainer from '../BoxContainer';
-import Row from '../Row';
-import Switch from "./Switch"
+import BoxContainer from '../../BoxContainer';
+import Row from '../../Row';
+import Switch from '../Switch';
 
-function Box({ id, hour: { hh, mm }, isActive, history }) {
+function AlarmsBox({ id, hour: { hh, mm }, isActive, history }) {
     return (
         // box container bu olacaqdir
         <BoxContainer>
@@ -17,7 +17,7 @@ function Box({ id, hour: { hh, mm }, isActive, history }) {
 
             {/* history and active button */}
             <Row
-                className={`items-center flex gap-3 text-sm transition-all ${isActive ? 'text-lightMain' : 'text-stone-400'}`}
+                className={`flex items-center gap-3 text-sm transition-all ${isActive ? 'text-lightMain' : 'text-stone-400'}`}
             >
                 <div>{history}</div>
                 <div>
@@ -28,4 +28,4 @@ function Box({ id, hour: { hh, mm }, isActive, history }) {
     );
 }
 
-export default Box;
+export default AlarmsBox;
