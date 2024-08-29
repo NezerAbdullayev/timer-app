@@ -13,25 +13,28 @@ import Alarms from './pages/Alarms';
 
 // import  components
 
-function App() {
-    {
-        /* routing */
-    }
 
-    <>
-        <div className='font-serif text-sm text-stone-500 bg-red-200'>heefef</div>
-    
-        <Router>
-            <Routes>
-                <Route path="/" element={<Navigate to="/alarms" replace />} />
-                <Route path="/alarms" element={<Alarms />} />
-                <Route path="/worldclock" element={<WorldClock />} />
-                <Route path="/stopwatch" element={<StopWatch />} />
-                <Route path="/timer" element={<Timer />} />
-            </Routes>
-        </Router>
-        ;
-    </>;
+function App() {
+    return (
+        <>
+            <div className="font-serif text-sm text-stone-500 bg-red-200">
+                heefef
+            </div>
+
+            <Router>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Navigate to="/alarms" replace />}
+                    />
+                    <Route path="/alarms" element={<Alarms />} />
+                    <Route path="/worldclock" element={<WorldClock />} />
+                    <Route path="/stopwatch" element={<StopWatch />} />
+                    <Route path="/timer" element={<Timer />} />
+                </Routes>
+            </Router>
+        </>
+    );
 }
 
 export default App;
