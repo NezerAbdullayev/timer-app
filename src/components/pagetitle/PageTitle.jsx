@@ -1,13 +1,9 @@
-import {StyledPageTitle} from "./PageTitle.style"
-
-
-
 function PageTitle({title,desc}) {
     return (
-        <StyledPageTitle>
+        <div>
             <h3>{title}</h3>
             <span>{desc}</span>
-        </StyledPageTitle>
+        </div>
     )
 }
 

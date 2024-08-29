@@ -1,12 +1,10 @@
-import styled from 'styled-components'
 
-const StyledCreateNewBoxButton = styled.``
 
 function CreateNewBoxButton() {
     return (
-        <StyledCreateNewBoxButton>
+        <div>
             CreateNewBoxButton
-        </StyledCreateNewBoxButton>
+        </div>
     )
 }
 

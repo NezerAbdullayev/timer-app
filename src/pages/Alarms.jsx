@@ -1,6 +1,3 @@
-// styled component
-import styled from 'styled-components';
-
 // import component 
 import AlarmsContainer from '../components/boxContainer/BoxContainer';
 import PageTitle from '../components/pagetitle/PageTitle';
