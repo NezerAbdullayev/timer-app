@@ -3,7 +3,12 @@ export default {
     darkMode: 'class',
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                darkMain: '#050505', 
+                lightMain:"#fff"
+            },
+        },
     },
     plugins: [],
 };

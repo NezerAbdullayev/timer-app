@@ -1,40 +1,35 @@
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
     Navigate,
+    createBrowserRouter,
+    RouterProvider,
 } from 'react-router-dom';
 
 // import pages
-import WorldClock from './pages/WorldClock';
-import StopWatch from './pages/StopWatch';
-import Timer from './pages/Timer';
-import Alarms from './pages/Alarms';
-
-// import  components
-
+import WorldClock from './pages/WorldClockPage';
+import StopWatch from './pages/StopWatchPage';
+import Timer from './pages/TimerPage';
+import AlarmsPage from './pages/AlarmsPage';
+import ErrorPage from './pages/ErrorPage';
+import AppLayout from './components/AppLayout';
 
 function App() {
-    return (
-        <>
-            <div className="font-serif text-sm text-stone-500 bg-red-200">
-                heefef
-            </div>
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <AppLayout />,
+            errorElement: <ErrorPage />,
+            children: [
+                { path: '/', element: <Navigate to="/alarms" replace /> },
+                { path: 'alarms', element: <AlarmsPage /> },
+                { path: 'worldclock', element: <WorldClock /> },
+                { path: 'stopwatch', element: <StopWatch /> },
+                { path: 'timer', element: <Timer /> },
+                { path: '*', element: <ErrorPage /> },
+            ],
+        },
+    ]);
 
-            <Router>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<Navigate to="/alarms" replace />}
-                    />
-                    <Route path="/alarms" element={<Alarms />} />
-                    <Route path="/worldclock" element={<WorldClock />} />
-                    <Route path="/stopwatch" element={<StopWatch />} />
-                    <Route path="/timer" element={<Timer />} />
-                </Routes>
-            </Router>
-        </>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;
