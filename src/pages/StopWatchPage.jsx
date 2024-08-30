@@ -5,7 +5,7 @@ import GridColoms from '../components/GridColoms';
 // import TimerCorol from '../components/timerControl/TimerCorol';
 import StopwatchsGroup from '../components/boxGroup/stopWatchGroup/StopWatchBoxGroup';
 import StopwatchInput from '../components/stopwatchInput/StopwatchInput'
-import Row from '../components/Row';
+
 // fake data
 import { StopWatchData } from '../fakeData/fakeDate';
 
@@ -15,9 +15,10 @@ function StopwatchPage() {
         <GridColoms className="grid-rows-[30%_55%_15%]">
 
             {/*  Stopwatch */}
-            <Row className="w-full  grid place-items-center">
+            <GridColoms className="w-full  grid place-items-center">
                 <StopwatchInput />
-            </Row>
+                <StopwatchInput type="lap" />
+            </GridColoms>
 
             {/* history container */}
             <StopwatchsGroup items={StopWatchData} />

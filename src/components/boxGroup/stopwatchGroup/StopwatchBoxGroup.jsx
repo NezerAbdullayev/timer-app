@@ -5,26 +5,32 @@ import GridRow from '../../GridColoms';
 
 function StopWatchBoxGroup({ items = [] }) {
     return (
-        <GroupContainer>
+        <GridRow className=" grid-cils-[10%_90%] justify-items-center">
 
             {/* history title */}
-            <GridRow className="mx-auto h-10 w-[1000px] max-w-[90%] grid-cols-[1fr_2fr__2fr] justify-items-center border-b border-stone-500/30 pb-2 text-stone-500">
+            <GridRow className="mx-auto  w-full max-w-[1000px] h-10 grid-cols-[1fr_2fr_2fr] justify-items-center border-b border-stone-500/30 pb-2 text-stone-500 ">
+
                 <div>Lap</div>
                 <div>Lap times</div>
                 <div>Overall time</div>
             </GridRow>
 
-            {items.length &&
-                items.map((item) => (
-                    <StopwatchBox
-                        key={item.id}
-                        id={item.id}
-                        lap={item.lap}
-                        lapTimes={item.lapTimes}
-                        overallTime={item.overallTime}
-                    />
-                ))}
-        </GroupContainer>
+
+            <GroupContainer>
+
+                {items.length &&
+                    items.map((item) => (
+                        <StopwatchBox
+                            key={item.id}
+                            id={item.id}
+                            lap={item.lap}
+                            lapTimes={item.lapTimes}
+                            overallTime={item.overallTime}
+                        />
+                    ))}
+            </GroupContainer>
+
+        </GridRow>
     );
 }
 
