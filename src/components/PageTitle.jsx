@@ -1,4 +1,4 @@
-import FlexRow from '../FlexRow';
+import FlexRow from './FlexRow';
 
 function PageTitle({ title, desc }) {
     return (

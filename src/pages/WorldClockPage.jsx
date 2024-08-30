@@ -1,17 +1,14 @@
 // import  components
 import WorldClockBoxGroup from '../components/boxGroup/worldClockGroup/WorldClockBoxGroup';
 import GridColoms from '../components/GridColoms';
-import PageTitle from '../components/pageTitle/PageTitle';
+import PageTitle from '../components/PageTitle';
 import Toolbar from '../components/toolbar/Toolbar';
 import { worldClock } from '../fakeData/fakeDate';
 
-function WorldClock() {
+function WorldClockPage() {
     return (
-        <GridColoms>
-            <PageTitle
-                title="alarm in 10 hours 51 minutes"
-                desc="the 29 Aug, 07:50"
-            />
+        <GridColoms className="grid-rows-[20%_15%_65%]">
+            <PageTitle title="23:37:38" desc="Azerbaijan Standard Time" />
 
             <Toolbar />
 
@@ -20,4 +17,4 @@ function WorldClock() {
     );
 }
 
-export default WorldClock;
+export default WorldClockPage;

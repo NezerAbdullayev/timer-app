@@ -1,6 +1,6 @@
 function GridColoms({children,className}) {
     return (
-        <div className={`grid  h-full grid-rows-[20%_15%_65%] ${className ? className : ""}`}>
+        <div className={`grid  h-full   ${className ? className : ""}`}>
             {children}
         </div>
     )
