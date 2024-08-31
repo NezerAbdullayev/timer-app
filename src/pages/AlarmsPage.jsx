@@ -7,13 +7,14 @@ import PageTitle from '../components/PageTitle';
 import GridColoms from '../components/GridColoms';
 
 function AlarmsPage() {
-    console.log("alarms page")
+    console.log('alarms page');
 
     return (
         <GridColoms className="grid-rows-[20%_15%_65%]">
             <PageTitle
-                title="alarm in 10 hours 51 minutes"
-                desc="the 29 Aug, 07:50"
+                className="justify-end"
+                headerTitle="alarm in 10 hours 51 minutes"
+                headerDesc="the 29 Aug, 07:50"
             />
 
             <Toolbar />

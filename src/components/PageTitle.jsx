@@ -1,11 +1,9 @@
-import FlexRow from './FlexRow';
-
-function PageTitle({ title, desc }) {
+function PageTitle({ headerTitle, headerDesc,className }) {
     return (
-        <FlexRow className="flex-col justify-end text-center">
-            <h3 className="mb-2 text-3xl sm:text-4xl">{title}</h3>
-            <span className="text-base text-stone-600 sm:text-xl">{desc}</span>
-        </FlexRow>
+        <header className={`flex flex-col text-center  ${className ? className : ""}`}>
+            <div className="mb-2 text-3xl sm:text-4xl">{headerTitle}</div>
+            <div className="text-base text-stone-600 sm:text-xl">{headerDesc}</div>
+        </header>
     );
 }
 

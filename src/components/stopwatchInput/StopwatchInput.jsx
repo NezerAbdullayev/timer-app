@@ -1,9 +1,7 @@
-
-import { formatTime } from "../../functions/formatTime";
+import { formatTime } from '../../functions/formatTime';
 
 function StopwatchInput({ value, type }) {
-    const formatValue=formatTime(value)
-
+    const formatValue = formatTime(value);
 
     if (type === 'lap') {
         return (
@@ -12,7 +10,7 @@ function StopwatchInput({ value, type }) {
                 disabled
                 onChange={() => {}}
                 value={formatValue}
-                className="m-4 h-auto w-[15ch] bg-transparent text-center font-mono text-2xl tracking-[1px]"
+                className="mx-4  h-auto w-[15ch] bg-transparent text-center text-stone-400 font-mono text-base tracking-[1px] sm:text-2xl"
             />
         );
     }
@@ -21,7 +19,7 @@ function StopwatchInput({ value, type }) {
         <input
             type="text"
             disabled
-            className="m-1 h-auto w-[15ch] bg-transparent text-center font-mono text-5xl tracking-[1px]"
+            className=" mt-1 h-auto w-[15ch] bg-transparent text-center font-mono text-3xl tracking-[1px] sm:text-5xl"
             onChange={() => {}}
             value={formatValue}
         />
