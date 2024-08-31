@@ -1,30 +1,31 @@
-function StopwatchInput({ value = '00:00:00:00', type }) {
-    if (type == 'lap')
+
+import { formatTime } from "../../functions/formatTime";
+
+function StopwatchInput({ value, type }) {
+    const formatValue=formatTime(value)
+
+
+    if (type === 'lap') {
         return (
             <input
                 type="text"
                 disabled
-                onChange={() => {
-                    return;
-                }}
-                value={value}
-                className="h-auto w-full bg-transparent m-4 text-center text-2xl tracking-[1px]"
+                onChange={() => {}}
+                value={formatValue}
+                className="m-4 h-auto w-[15ch] bg-transparent text-center font-mono text-2xl tracking-[1px]"
             />
         );
+    }
 
     return (
         <input
             type="text"
             disabled
-            className="h-auto w-full bg-transparent m-1 text-center text-5xl tracking-[1px]"
-            onChange={() => {
-                return;
-            }}
-            value={value}
+            className="m-1 h-auto w-[15ch] bg-transparent text-center font-mono text-5xl tracking-[1px]"
+            onChange={() => {}}
+            value={formatValue}
         />
     );
 }
 
 export default StopwatchInput;
-
-

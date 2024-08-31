@@ -2,34 +2,36 @@
 import GroupContainer from '../GroupContainer';
 import StopwatchBox from './StopWatchBox';
 import GridRow from '../../GridColoms';
+import { useStopwatch } from '../../../Hooks/useStopwatch';
 
-function StopWatchBoxGroup({ items = [] }) {
+function StopWatchBoxGroup() {
+    const {
+        state: { history },
+    } = useStopwatch();
+
+    console.log(history);
+
     return (
-        <GridRow className=" grid-cils-[10%_90%] justify-items-center">
-
+        <GridRow className="grid-cils-[10%_90%] justify-items-center">
             {/* history title */}
-            <GridRow className="mx-auto  w-full max-w-[1000px] h-10 grid-cols-[1fr_2fr_2fr] justify-items-center border-b border-stone-500/30 pb-2 text-stone-500 ">
-
+            <GridRow className="mx-auto h-10 w-full max-w-[1000px] grid-cols-[1fr_2fr_2fr] justify-items-center border-b border-stone-500/30 pb-2 text-stone-500">
                 <div>Lap</div>
                 <div>Lap times</div>
                 <div>Overall time</div>
             </GridRow>
 
-
             <GroupContainer>
-
-                {items.length &&
-                    items.map((item) => (
+                {history.length > 0 &&
+                    (history || []).map((item) => (
                         <StopwatchBox
                             key={item.id}
                             id={item.id}
                             lap={item.lap}
-                            lapTimes={item.lapTimes}
-                            overallTime={item.overallTime}
+                            lapTime={item.lapTime}
+                            time={item.time}
                         />
                     ))}
             </GroupContainer>
-
         </GridRow>
     );
 }

@@ -7,6 +7,8 @@ import PageTitle from '../components/PageTitle';
 import GridColoms from '../components/GridColoms';
 
 function AlarmsPage() {
+    console.log("alarms page")
+
     return (
         <GridColoms className="grid-rows-[20%_15%_65%]">
             <PageTitle

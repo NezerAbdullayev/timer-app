@@ -6,6 +6,9 @@ import Toolbar from '../components/toolbar/Toolbar';
 import { worldClock } from '../fakeData/fakeDate';
 
 function WorldClockPage() {
+
+    console.log("re-render")
+    
     return (
         <GridColoms className="grid-rows-[20%_15%_65%]">
             <PageTitle title="23:37:38" desc="Azerbaijan Standard Time" />
