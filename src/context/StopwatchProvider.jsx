@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { getCurrentDateTime } from '../functions/getCurrentDateTime';
 
 //  context
 export const StopwatchContext = createContext();
@@ -11,6 +12,9 @@ const initialState = {
     time: 0,
     lap: 0,
     lapTime: 0,
+    isReset: false,
+    historyDate: '',
+    lapHistory: [],
     history: [],
 };
 
@@ -21,18 +25,30 @@ function reducer(state, action) {
         case 'START':
             return { ...state, isRunning: true };
         case 'PAUSE':
-            return { ...state, isRunning: false };
+            return { ...state, isRunning: false, isReset: true };
         case 'RESET':
-            return { ...state, time: 0, lapTime: 0, lap: 0, history: [...state.history] };
+            return {
+                ...state,
+                time: 0,
+                lapTime: 0,
+                lap: 0,
+                isReset: false,
+                lapHistory: [],
+                history: {
+                    ...state.history,
+                    [uuidv4()]: { laps: [...state.lapHistory], date: getCurrentDateTime() },
+                },
+            };
         case 'LAP':
             return {
                 ...state,
-                history: [
-                    ...state.history,
+                lapHistory: [
+                    ...state.lapHistory,
                     { id: uuidv4(), time: state.time, lapTime: state.lapTime, lap: state.lap + 1 },
                 ],
+                isReset: true,
                 lapTime: 0,
-                lap: state.lap+1,
+                lap: state.lap + 1,
             };
         case 'TICK':
             return { ...state, time: state.time + 1, lapTime: state.lapTime + 1 };
@@ -49,7 +65,7 @@ function StopwatchProvider({ children }) {
     useEffect(() => {
         let interval;
 
-        if (state.isRunning && state.history) {
+        if (state.isRunning) {
             interval = setInterval(() => {
                 dispatch({ type: 'TICK' });
             }, 10);
@@ -57,7 +73,7 @@ function StopwatchProvider({ children }) {
             clearInterval(interval);
         }
         return () => clearInterval(interval);
-    }, [state.isRunning, dispatch]);
+    }, [state.isRunning, state.history, dispatch, state.time]);
 
     const value = {
         state,

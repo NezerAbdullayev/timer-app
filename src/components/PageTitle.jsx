@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function PageTitle({ headerTitle, headerDesc,className }) {
     return (
         <header className={`flex flex-col text-center  ${className ? className : ""}`}>
@@ -7,4 +9,4 @@ function PageTitle({ headerTitle, headerDesc,className }) {
     );
 }
 
-export default PageTitle;
+export default memo(PageTitle);

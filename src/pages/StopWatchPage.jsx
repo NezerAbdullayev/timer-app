@@ -1,80 +1,56 @@
 //  import components
-import Button from '../components/buttons/Button';
-import FlexRow from '../components/FlexRow';
 import GridColoms from '../components/GridColoms';
 import PageTitle from '../components/PageTitle';
 import StopwatchBoxGroup from '../components/boxGroup/stopWatchGroup/StopWatchBoxGroup';
 import StopwatchInput from '../components/stopwatchInput/StopwatchInput';
+import StopwatchControls from "../components/StopwatchControls"
+import AllStopwatchHistoryList from "../components/history/History"
 
 // Hooks
 import { useStopwatch } from '../Hooks/useStopwatch';
 
+import {  useState } from 'react';
+
 function StopwatchPage() {
-
     
-    const {
-        state: { isRunning, time, lapTime, history },
-        dispatch,
-    } = useStopwatch();
+    const [historOpen, setHistoryOpen] = useState(false);
+
+    const {state: {lapHistory,history,isRunning,isReset },dispatch } = useStopwatch();
 
 
-    const handleStart = () => dispatch({ type: 'START' });
-    const handleStop = () => dispatch({ type: 'PAUSE' });
-    const handleReset = () => dispatch({ type: 'RESET' });
-    const handleLap = () => dispatch({ type: 'LAP' });
+    function openHistory(){
+        setHistoryOpen(true)
+    }
+    function closeHistory(){
+        setHistoryOpen(false)
+    }
+
+
+    console.log(history)
+
+
     // const handleClearHistory = () => dispatch({ type: 'CLEAR_HISTORY' });
 
     return (
         <GridColoms className="grid-rows-[30%_55%_15%]">
+            
             {/*  header stopwatch start */}
             <PageTitle
                 className="justify-center"
-                headerTitle={<StopwatchInput value={time} />}
-                headerDesc={history.length > 0 && <StopwatchInput type="lap" value={lapTime} />}
+                headerTitle={<StopwatchInput  type="time" />}
+                headerDesc={lapHistory.length > 0 && (<StopwatchInput type="lap" />)}
             />
             {/*   header stopwatch end */}
-            {/* history container */}
-            <StopwatchBoxGroup />
+
+            <div>
+                {/* history container */}
+                <StopwatchBoxGroup history={lapHistory} />
+                {/* <AllStopwatchHistoryList history={history} />    */}
+            </div>
 
             {/* Stopwatch control buttons */}
-            <FlexRow className="justify-evenly gap-5">
+            <StopwatchControls isReset={isReset} isRunning={isRunning} dispatch={dispatch} />
 
-                {/* start condition */}
-                {(!isRunning && !time) && (
-                    <>
-                        <Button type="muiGray" disabled={true}>
-                            Reset
-                        </Button>
-                        <Button type="muiBlue" onClick={handleStart}>
-                            Start
-                        </Button>
-                    </>
-                )}
-
-                {/* pause and lop condition */}
-                {isRunning && (
-                    <>
-                        <Button type="muiGray" onClick={handleLap}>
-                            Lap
-                        </Button>
-                        <Button type="muiBlue" onClick={handleStop}>
-                            Pause
-                        </Button>
-                    </>
-                )}
-
-                {/* pause and reseet condition */}
-                {(!isRunning && time !== 0) && (
-                    <>
-                        <Button type="muiGray" onClick={handleReset}>
-                            Reset
-                        </Button>
-                        <Button type="muiBlue" onClick={handleStart}>
-                            Start
-                        </Button>
-                    </>
-                )}
-            </FlexRow>
         </GridColoms>
     );
 }

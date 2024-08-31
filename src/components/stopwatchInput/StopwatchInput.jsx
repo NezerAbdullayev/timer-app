@@ -1,29 +1,42 @@
 import { formatTime } from '../../functions/formatTime';
+import { useStopwatch } from '../../Hooks/useStopwatch';
 
-function StopwatchInput({ value, type }) {
-    const formatValue = formatTime(value);
+function StopwatchInput({ type }) {
+    // context
+    const {
+        state: { time, lapTime },
+    } = useStopwatch();
 
     if (type === 'lap') {
+        let changeLapTime = formatTime(lapTime);
         return (
             <input
                 type="text"
                 disabled
-                onChange={() => {}}
-                value={formatValue}
-                className="mx-4  h-auto w-[15ch] bg-transparent text-center text-stone-400 font-mono text-base tracking-[1px] sm:text-2xl"
+                onChange={() => {
+                    return;
+                }}
+                value={changeLapTime}
+                className="mx-4 h-auto w-[15ch] bg-transparent text-center font-mono text-base tracking-[1px] text-stone-400 sm:text-2xl"
             />
         );
     }
 
-    return (
-        <input
-            type="text"
-            disabled
-            className=" mt-1 h-auto w-[15ch] bg-transparent text-center font-mono text-3xl tracking-[1px] sm:text-5xl"
-            onChange={() => {}}
-            value={formatValue}
-        />
-    );
+    if (type === 'time') {
+        let changeTime = formatTime(time);
+
+        return (
+            <input
+                type="text"
+                disabled
+                className="mt-1 h-auto w-[15ch] bg-transparent text-center font-mono text-3xl tracking-[1px] sm:text-5xl"
+                onChange={() => {
+                    return;
+                }}
+                value={changeTime}
+            />
+        );
+    }
 }
 
 export default StopwatchInput;

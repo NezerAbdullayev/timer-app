@@ -2,10 +2,9 @@
 import GroupContainer from '../GroupContainer';
 import StopwatchBox from './StopWatchBox';
 import GridRow from '../../GridColoms';
-import { useStopwatch } from '../../../Hooks/useStopwatch';
+import { memo } from 'react';
 
-function StopWatchBoxGroup() {
-    const { state: { history },} = useStopwatch();
+function StopWatchBoxGroup({history}) {
 
     return (
         <GridRow className="grid-rows-[40px_1fr] justify-items-center">
@@ -31,4 +30,4 @@ function StopWatchBoxGroup() {
     );
 }
 
-export default StopWatchBoxGroup;
+export default memo(StopWatchBoxGroup);
