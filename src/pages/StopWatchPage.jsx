@@ -10,10 +10,11 @@ import AllStopwatchHistoryList from "../components/history/History"
 import { useStopwatch } from '../Hooks/useStopwatch';
 
 import {  useState } from 'react';
+import Row from '../components/Row';
 
 function StopwatchPage() {
     
-    const [historOpen, setHistoryOpen] = useState(false);
+    const [historyOpen, setHistoryOpen] = useState(false);
 
     const {state: {lapHistory,history,isRunning,isReset },dispatch } = useStopwatch();
 
@@ -42,11 +43,11 @@ function StopwatchPage() {
             />
             {/*   header stopwatch end */}
 
-            <div>
+            <Row className="relative z-10 overflow-hidden  w-full h-full ">
                 {/* history container */}
-                <StopwatchBoxGroup history={lapHistory} />
-                {/* <AllStopwatchHistoryList history={history} />    */}
-            </div>
+                <StopwatchBoxGroup history={lapHistory} historyOpen={historyOpen} />
+                <AllStopwatchHistoryList history={history} historyOpen={historyOpen} />   
+            </Row>
 
             {/* Stopwatch control buttons */}
             <StopwatchControls isReset={isReset} isRunning={isRunning} dispatch={dispatch} />
