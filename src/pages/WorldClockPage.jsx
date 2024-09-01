@@ -1,9 +1,13 @@
-// import  components
-import WorldClockBoxGroup from '../components/boxGroup/worldClockGroup/WorldClockBoxGroup';
-import GridColoms from '../components/GridColoms';
-import PageTitle from '../components/PageTitle';
-import Toolbar from '../components/toolbar/Toolbar';
+// fake data
 import { worldClock } from '../fakeData/fakeDate';
+
+
+
+// import  components
+import GridColoms from '../components/ui/GridColoms';
+import PageTitle from '../components/ui/PageTitle';
+import Toolbar from '../components/ui/Toolbar';
+import WorldClockBoxGroup from '../components/worldClock/WorldClockBoxGroup';
 
 function WorldClockPage() {
 

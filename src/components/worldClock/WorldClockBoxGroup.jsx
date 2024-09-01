@@ -1,5 +1,6 @@
-import GroupContainer from '../GroupContainer';
-import WorldClockBox from './WorldClockBox';
+import GroupContainer from "../ui/boxGroup/GroupContainer";
+import WorldClockBox from "./WorldClockBox"
+
 
 function WorldClockBoxGroup({ items }) {
     return (

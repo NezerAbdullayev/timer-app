@@ -1,6 +1,6 @@
 import { FormControlLabel, styled, Switch as SwitchControl } from '@mui/material';
 
-function Switch() {
+function SwitchButton({onClick,type}) {
     const IOSSwitch = styled((props) => (
         <SwitchControl
             focusVisibleClassName=".Mui-focusVisible"
@@ -66,13 +66,14 @@ function Switch() {
     }));
 
     return (
-        <FormControlLabel
+        <FormControlLabel 
+            onClick={onClick}
             control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
         />
     );
 }
 
-export default Switch;
+export default SwitchButton;
 
 
 

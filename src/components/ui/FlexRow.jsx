@@ -1,4 +1,4 @@
-function FlexRow({children,className}) {
+function FlexRow({children,className,}) {
     return (
         <div className={`flex ${className ? className : "" }`}>
             {children}

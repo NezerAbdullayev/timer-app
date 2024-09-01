@@ -10,7 +10,9 @@ import StopwatchPage from './pages/StopwatchPage';
 import Timer from './pages/TimerPage';
 import AlarmsPage from './pages/AlarmsPage';
 import ErrorPage from './pages/ErrorPage';
-import AppLayout from './components/AppLayout';
+
+// component
+import AppLayout from './components/ui/AppLayout'
 
 
 function App() {

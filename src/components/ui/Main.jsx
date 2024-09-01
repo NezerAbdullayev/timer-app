@@ -1,6 +1,6 @@
 function Main({children}) {
     return (
-        <main>
+        <main className="overflow-hidden">
             {children}
         </main>
     )

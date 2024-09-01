@@ -1,6 +1,8 @@
-import BoxContainer from '../../BoxContainer';
-import Row from '../../Row';
-import Switch from '../Switch';
+// import component
+import BoxContainer from '../ui/BoxContainer';
+import Row from '../ui/Row';
+// import mui component
+import Switch from '../ui/boxGroup/Switch';
 
 function AlarmsBox({ id, hour: { hh, mm }, isActive, history }) {
     return (
@@ -19,10 +21,10 @@ function AlarmsBox({ id, hour: { hh, mm }, isActive, history }) {
             <Row
                 className={`flex items-center gap-3 text-sm transition-all ${isActive ? 'text-lightMain' : 'text-stone-400'}`}
             >
-                <div>{history}</div>
-                <div>
+                <Row>{history}</Row>
+                <Row>
                     <Switch />
-                </div>
+                </Row>
             </Row>
         </BoxContainer>
     );
