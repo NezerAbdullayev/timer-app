@@ -8,6 +8,10 @@ export default {
                 darkMain: '#050505', 
                 lightMain:"#fff"
             },
+            screens:{
+                xs:"500px"
+            }
+            
         },
     },
     plugins: [],

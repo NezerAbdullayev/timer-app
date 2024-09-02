@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // context hooks
 import { useAlarms } from '../../Hooks/useAlarms';
 
@@ -9,16 +10,25 @@ import GridColoms from '../../components/ui/GridColoms';
 import PageTitle from '../../components/ui/PageTitle';
 import Toolbar from '../../components/ui/Toolbar';
 import AlarmsBoxGroup from './components/AlarmsBoxGroup';
+import Popup from '../../components/ui/Popup';
 
 // utils
 import { getRealTime } from '../../utils/getCurrentDateTime';
+import AddAlarmPopup from './components/AddAlarmPopup';
 
 function AlarmsPage() {
-    // console.log(getRealTime());
+    const [openNewAlarm, setOpenNewAlarm] = useState();
+
+    function handleAddAlarmBtn() {
+        setOpenNewAlarm((openNewAlarm) => !openNewAlarm);
+    }
 
     console.log(useAlarms());
 
-    const {state:{alarmsList,realTime},dispatch}=useAlarms()
+    const {
+        state: { alarmsList, realTime },
+        dispatch,
+    } = useAlarms();
 
     function addAlarm({ hour, history, music }) {
         dispatch({ type: 'ADD_ALARM', payload: { hour, history, music } });
@@ -55,9 +65,13 @@ function AlarmsPage() {
                 headerDesc="the 29 Aug, 07:50"
             />
 
-            <Toolbar />
+            <Toolbar onClick={handleAddAlarmBtn} />
 
             <AlarmsBoxGroup items={alarms} />
+
+            <Popup>
+                <AddAlarmPopup />
+            </Popup>
         </GridColoms>
     );
 }

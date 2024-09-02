@@ -10,7 +10,7 @@ import FlexRow from './FlexRow';
 
 
 
-function Toolbar({ sort = true }) {
+function Toolbar({ sort = true,onClick }) {
     return (
         <FlexRow className="items-center justify-end gap-4">
 
@@ -18,9 +18,10 @@ function Toolbar({ sort = true }) {
             <Fab
                 color="primary"
                 aria-label="add"
+                onClick={onClick}
                 sx={{ width: '35px', height: '35px' }}
             >
-                <AddIcon sx={{ fontSize: '16px' }} />
+                <AddIcon sx={{ fontSize: '16px' }}  />
             </Fab>
             {/* create button end */}
 
