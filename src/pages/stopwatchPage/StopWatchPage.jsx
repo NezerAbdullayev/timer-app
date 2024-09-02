@@ -2,17 +2,17 @@
 import { useState } from 'react';
 
 // Hooks
-import { useStopwatch } from '../Hooks/useStopwatch';
+import { useStopwatch } from '../../Hooks/useStopwatch';
 
 //  import components
-import GridColoms from '../components/ui/GridColoms';
-import PageTitle from '../components/ui/PageTitle';
-import StopwatchBoxGroup from '../components/stopwacth/StopwatchBoxGroup';
-import StopwatchInput from '../components/stopwacth/StopwatchInput';
-import StopwatchControls from '../components/stopwacth/StopwatchControls';
-import AllStopwatchHistoryList from '../components/history/AllStopwatchHistoryList';
-import Row from '../components/ui/Row';
-import HistoryButton from '../components/stopwacth/HistoryButton';
+import GridColoms from '../../components/ui/GridColoms';
+import PageTitle from '../../components/ui/PageTitle';
+import StopwatchBoxGroup from "./components/StopwatchBoxGroup"
+import StopwatchInput from './components/StopwatchInput';
+import StopwatchControls from './components/StopwatchControls';
+import AllStopwatchHistoryList from './components/AllStopwatchHistoryList';
+import Row from '../../components/ui/Row';
+import HistoryButton from './components/HistoryButton';
 
 function StopwatchPage() {
     const [historyOpen, setHistoryOpen] = useState(false);

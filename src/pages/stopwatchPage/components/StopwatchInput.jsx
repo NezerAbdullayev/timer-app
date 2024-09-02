@@ -1,5 +1,6 @@
-import { formatTime } from '../../functions/formatTime';
-import { useStopwatch } from '../../Hooks/useStopwatch';
+// import { formatTime } from '../../functions/formatTime';
+import { formatTime } from "../../../utils/formatTime";
+import { useStopwatch } from '../../../Hooks/useStopwatch';
 
 function StopwatchInput({ type }) {
     // context

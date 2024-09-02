@@ -1,13 +1,13 @@
 // fake data
-import { worldClock } from '../fakeData/fakeDate';
+import { worldClock } from '../../fakeData/fakeDate';
 
 
 
 // import  components
-import GridColoms from '../components/ui/GridColoms';
-import PageTitle from '../components/ui/PageTitle';
-import Toolbar from '../components/ui/Toolbar';
-import WorldClockBoxGroup from '../components/worldClock/WorldClockBoxGroup';
+import GridColoms from '../../components/ui/GridColoms';
+import PageTitle from '../../components/ui/PageTitle';
+import Toolbar from '../../components/ui/Toolbar';
+import WorldClockBoxGroup from './components/WorldClockBoxGroup';
 
 function WorldClockPage() {
 

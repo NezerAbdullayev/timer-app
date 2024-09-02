@@ -1,8 +1,8 @@
 // import component
-import BoxContainer from '../ui/BoxContainer';
-import Row from '../ui/Row';
+import BoxContainer from '../../../components/ui/BoxContainer';
+import Row from '../../../components/ui/Row';
 // import mui component
-import Switch from '../ui/boxGroup/Switch';
+import Switch from '../../../components/ui/boxGroup/Switch';
 
 function AlarmsBox({ id, hour: { hh, mm }, isActive, history }) {
     return (

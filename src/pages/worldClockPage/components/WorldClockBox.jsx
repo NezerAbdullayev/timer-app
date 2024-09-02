@@ -1,5 +1,5 @@
-import BoxContainer from '../ui/BoxContainer';
-import Row from '../ui/Row';
+import BoxContainer from '../../../components/ui/BoxContainer';
+import Row from '../../../components/ui/Row';
 
 function WorldClockBox({ id, cityName, comparison, clockTime }) {
     return (

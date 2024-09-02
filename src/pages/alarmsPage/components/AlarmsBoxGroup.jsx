@@ -1,6 +1,6 @@
 // import components
-import AlarmsBox from './AlarmsBox';
-import GroupContainer from '../ui/boxGroup/GroupContainer';
+import AlarmsBox from "./AlarmsBox"
+import GroupContainer from "../../../components/ui/boxGroup/GroupContainer"
 
 function AlarmsBoxGroup({ items }) {
     return (

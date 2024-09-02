@@ -1,9 +1,10 @@
 // import hooks 
 import { memo } from 'react';
+
 // import component
 import StopwatchBox from './StopWatchBox';
-import GridColoms from '../ui/GridColoms';
-import GroupContainer from '../ui/boxGroup/GroupContainer';
+import GridColoms from '../../../components/ui/GridColoms';
+import GroupContainer from '../../../components/ui/boxGroup/GroupContainer';
 
 function StopWatchBoxGroup({ history, historyOpen }) {
     return (

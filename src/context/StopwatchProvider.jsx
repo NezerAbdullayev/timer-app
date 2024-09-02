@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { getCurrentDateTime } from '../functions/getCurrentDateTime';
+import { getCurrentDateTime } from '../utils/getCurrentDateTime';
 
 //  context
 export const StopwatchContext = createContext();

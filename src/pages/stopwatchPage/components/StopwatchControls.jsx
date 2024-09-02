@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import Button from '../ui/Button';
-import FlexRow from '../ui/FlexRow';
+import Button from '../../../components/ui/Button';
+import FlexRow from '../../../components/ui/FlexRow';
 
 function StopwatchControls({ isReset, dispatch, isRunning }) {
     const handleStart = () => dispatch({ type: 'START' });

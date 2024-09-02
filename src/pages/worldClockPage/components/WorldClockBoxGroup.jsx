@@ -1,4 +1,4 @@
-import GroupContainer from "../ui/boxGroup/GroupContainer";
+import GroupContainer from "../../../components/ui/boxGroup/GroupContainer";
 import WorldClockBox from "./WorldClockBox"
 
 

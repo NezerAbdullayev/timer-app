@@ -5,10 +5,10 @@ import {
 } from 'react-router-dom';
 
 // import pages
-import WorldClockPage from './pages/WorldClockPage';
-import StopwatchPage from './pages/StopwatchPage';   
-import Timer from './pages/TimerPage';
-import AlarmsPage from './pages/AlarmsPage';
+import WorldClockPage from './pages/worldClockPage/WorldClockPage'
+import StopwatchPage from './pages/stopwatchPage/StopWatchPage';   
+import Timer from './pages/timerPage/TimerPage';
+import AlarmsPage from './pages/alarmsPage/AlarmsPage';
 import ErrorPage from './pages/ErrorPage';
 
 // component

@@ -1,7 +1,7 @@
 // import components
-import GridRow from "../ui/GridRow"
-
-import { formatTime } from "../../functions/formatTime"
+import GridRow from "../../../components/ui/GridRow"
+// function
+import { formatTime } from "../../../utils/formatTime"
 
 
 function StopwatchBox({lap,lapTime,time,className}) {

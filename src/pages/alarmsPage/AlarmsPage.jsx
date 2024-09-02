@@ -1,11 +1,11 @@
 // import fake data
+import { alarms } from '../../fakeData/fakeDate';
 // import component
 
-import GridColoms from '../components/ui/GridColoms';
-import PageTitle from '../components/ui/PageTitle';
-import Toolbar from '../components/ui/Toolbar';
-import { alarms } from '../fakeData/fakeDate';
-import AlarmsBoxGroup from '../components/alarms/AlarmsBoxGroup';
+import GridColoms from '../../components/ui/GridColoms';
+import PageTitle from '../../components/ui/PageTitle';
+import Toolbar from '../../components/ui/Toolbar';
+import AlarmsBoxGroup from "./components/AlarmsBoxGroup"
 
 
 function AlarmsPage() {
