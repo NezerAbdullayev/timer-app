@@ -3,11 +3,14 @@ import App from './App.jsx';
 import './index.css';
 import ThemeProvider from './context/ThemeProvider.jsx';
 import StopwatchProvider from './context/StopwatchProvider.jsx';
+import AlarmsProvider from './context/AlarmsProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
     <ThemeProvider>
         <StopwatchProvider>
-            <App />
+            <AlarmsProvider>
+                <App />
+            </AlarmsProvider>
         </StopwatchProvider>
     </ThemeProvider>
 );

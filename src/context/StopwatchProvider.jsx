@@ -70,9 +70,9 @@ function StopwatchProvider({ children }) {
                 dispatch({ type: 'TICK' });
             }, 10);
         } 
-        // else if (!state.isRunning && state.time !== 0) {
-            // clearInterval(interval);
-        // }
+        else if (!state.isRunning && state.time !== 0) {
+            clearInterval(interval);
+        }
         return () => clearInterval(interval);
     }, [state.isRunning, state.history, dispatch, state.time]);
 
@@ -85,3 +85,6 @@ function StopwatchProvider({ children }) {
 }
 
 export default StopwatchProvider;
+
+
+

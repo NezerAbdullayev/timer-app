@@ -1,12 +1,8 @@
-import { useContext } from "react"
-import AlarmsContext from "../context/AlarmsProvider"
+import { useContext } from 'react';
+import {AlarmsContext} from '../context/AlarmsProvider';
 
+export function useAlarms() {
+    const alarms = useContext(AlarmsContext);
 
-function useAlarms() {
-
-    const alarms=useContext(AlarmsContext)
-
-    if(alarms) return alarms 
+    if (alarms) return alarms;
 }
-
-export default useAlarms

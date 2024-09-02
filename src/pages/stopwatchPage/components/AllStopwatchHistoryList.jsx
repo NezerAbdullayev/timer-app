@@ -16,7 +16,7 @@ function AllStopwatchHistoryList({ history, historyOpen }) {
                     <div>Overall time</div>
                 </div>
 
-                <div className="h-auto overflow-y-auto">
+                <div className="h-auto overflow-y-auto px-2.5">
                     {historyEntries &&
                         historyEntries.map((lapHistory) => (
                             <HistoryList key={lapHistory[0]} historyList={lapHistory} />
