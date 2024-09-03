@@ -20,3 +20,4 @@ export function getRealTime() {
         console.log(currentTime);
     }, 1000);
 }
+

@@ -24,6 +24,21 @@ export function formatDate(formatValue) {
 
     const date = formatValue.$d ? new Date(formatValue.$d) : new Date(formatValue);
     const newDate = formatReverseDayAndMonth(date);
-     
-    return  newDate ? newDate : currentFormatDate()
+
+    return newDate ? newDate : currentFormatDate();
+}
+
+export function getCurrentHour() {
+    const now = new Date();
+
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+
+    return { hh: hours, mm: minutes };
+}
+
+export function realTimeAndHistory() {
+    const currentHistory = currentFormatDate();
+    const RealTime = getCurrentHour();
+    return { curTime: RealTime, history: currentHistory };
 }

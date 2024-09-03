@@ -11,12 +11,8 @@ import PageTitle from '../../components/ui/PageTitle';
 import Toolbar from '../../components/ui/Toolbar';
 import AlarmsBoxGroup from './components/AlarmsBoxGroup';
 import Popup from '../../components/ui/Popup';
-
-
-// utils
-import { getRealTime } from '../../utils/getCurrentDateTime';
 import AddAlarmPopup from './components/AddAlarmPopup';
-import { currentFormatDate } from '../../utils/formatTime';
+
 
 function AlarmsPage() {
 
@@ -28,7 +24,7 @@ function AlarmsPage() {
         dispatch,
     } = useAlarms();
 
-    console.log(alarmsList)
+    console.log(alarmsList,"realtime",realTime)
 
     function handleToggleAlarmBtn() {
         setOpenNewAlarm((openNewAlarm) => !openNewAlarm);
@@ -65,7 +61,7 @@ function AlarmsPage() {
         <GridColoms className="grid-rows-[20%_15%_65%]">
             <PageTitle
                 className="justify-end"
-                headerTitle="alarm in 10 hours 51 minutes"
+                headerTitle="ALARM"
                 headerDesc="the 29 Aug, 07:50"
             />
 
@@ -76,6 +72,8 @@ function AlarmsPage() {
             <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm} >
                 <AddAlarmPopup onToggleAlarmPopup={handleToggleAlarmBtn} dispatch={dispatch} />
             </Popup>
+            
+
         </GridColoms>
     );
 }

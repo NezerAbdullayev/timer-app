@@ -14,13 +14,13 @@ import Row from '../../../components/ui/Row';
 import FlexRow from '../../../components/ui/FlexRow';
 
 // utils
-import {  formatDate } from '../../../utils/formatTime';
+import { formatDate } from '../../../utils/formatTime';
 
-export default function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
-    const [hh, setHh] = useState("");
-    const [mm, setMm] = useState("");
+function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
+    const [hh, setHh] = useState('06');
+    const [mm, setMm] = useState('00');
     const [selectedDate, setSelectedDate] = useState(null);
-    const [sound, setSound] = useState('');
+    const [sound, setSound] = useState('samsung_prelude.mp3');
 
     function handleChangeSound(event) {
         setSound(event.target.value);
@@ -34,21 +34,15 @@ export default function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
         setMm(event.target.value);
     };
 
-
     // add new alarms button
     function addAlarm({ hour, history, sound }) {
-        let newDate = formatDate(history) 
+        let newDate = formatDate(history);
 
-
-
-        dispatch({ type: 'ADD_ALARM', payload: { hour, history:newDate, sound } });
+        dispatch({ type: 'ADD_ALARM', payload: { hour, history: newDate, sound } });
 
         // close popup
-        onToggleAlarmPopup()
-        
+        onToggleAlarmPopup();
     }
-
-
 
     return (
         <>
@@ -93,7 +87,7 @@ export default function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
                         label="Select Date"
                         value={selectedDate}
                         onChange={(newValue) => setSelectedDate(newValue)}
-                        slots={{ textField: TextField }} 
+                        slots={{ textField: TextField }}
                     />
                 </LocalizationProvider>
             </Row>
@@ -110,10 +104,9 @@ export default function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
                         onChange={handleChangeSound}
                     >
                         {/* buraya musiqileri qoyacam */}
-                        <MenuItem value=""></MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        <MenuItem value="samsung_prelude.mp3">samsung</MenuItem>
+                        <MenuItem value="iphone_alarm.mp3">Iphone alarm</MenuItem>
+                        <MenuItem value="morning_flower.mp3">morning</MenuItem>
                     </Select>
                 </FormControl>
             </Row>
@@ -140,7 +133,10 @@ export default function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
                 >
                     Add Alarm
                 </Button>
+
             </FlexRow>
         </>
     );
 }
+
+export default AddAlarmPopup;
