@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import HistoryList from '../../../components/history/HistoryList';
+import HistoryList from './HistoryList';
 
 function AllStopwatchHistoryList({ history, historyOpen }) {
     const historyEntries = Object.entries(history);

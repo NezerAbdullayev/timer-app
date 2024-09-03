@@ -12,23 +12,27 @@ import Toolbar from '../../components/ui/Toolbar';
 import AlarmsBoxGroup from './components/AlarmsBoxGroup';
 import Popup from '../../components/ui/Popup';
 
+
 // utils
 import { getRealTime } from '../../utils/getCurrentDateTime';
 import AddAlarmPopup from './components/AddAlarmPopup';
+import { currentFormatDate } from '../../utils/formatTime';
 
 function AlarmsPage() {
-    const [openNewAlarm, setOpenNewAlarm] = useState();
 
-    function handleAddAlarmBtn() {
-        setOpenNewAlarm((openNewAlarm) => !openNewAlarm);
-    }
+    const [openNewAlarm, setOpenNewAlarm] = useState(false);
 
-    console.log(useAlarms());
 
     const {
         state: { alarmsList, realTime },
         dispatch,
     } = useAlarms();
+
+    console.log(alarmsList)
+
+    function handleToggleAlarmBtn() {
+        setOpenNewAlarm((openNewAlarm) => !openNewAlarm);
+    }
 
     function addAlarm({ hour, history, music }) {
         dispatch({ type: 'ADD_ALARM', payload: { hour, history, music } });
@@ -56,7 +60,7 @@ function AlarmsPage() {
     function toggleIsactiveAlarm(id) {
         dispatch({ type: 'TOGGLE_ISACTIVE_ALARM', payload: id });
     }
-
+    
     return (
         <GridColoms className="grid-rows-[20%_15%_65%]">
             <PageTitle
@@ -65,12 +69,12 @@ function AlarmsPage() {
                 headerDesc="the 29 Aug, 07:50"
             />
 
-            <Toolbar onClick={handleAddAlarmBtn} />
+            <Toolbar onToggleAlarmPopup={handleToggleAlarmBtn} />
 
-            <AlarmsBoxGroup items={alarms} />
+            <AlarmsBoxGroup items={alarmsList}  />
 
-            <Popup>
-                <AddAlarmPopup />
+            <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm} >
+                <AddAlarmPopup onToggleAlarmPopup={handleToggleAlarmBtn} dispatch={dispatch} />
             </Popup>
         </GridColoms>
     );

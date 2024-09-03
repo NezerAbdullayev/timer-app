@@ -1,10 +1,19 @@
 // import component
+import { useAlarms } from '../../../Hooks/useAlarms';
 import BoxContainer from '../../../components/ui/BoxContainer';
 import Row from '../../../components/ui/Row';
 // import mui component
 import Switch from '../../../components/ui/boxGroup/Switch';
 
 function AlarmsBox({ id, hour: { hh, mm }, isActive, history }) {
+
+    const {dispatch}=useAlarms()
+
+
+    function handleAlarmActiveBtn(id){
+        dispatch({type:"TOGGLE_ISACTIVE_ALARM",payload:id})
+    }
+
     return (
         // box container bu olacaqdir
         <BoxContainer>
@@ -23,7 +32,7 @@ function AlarmsBox({ id, hour: { hh, mm }, isActive, history }) {
             >
                 <Row>{history}</Row>
                 <Row>
-                    <Switch />
+                    <Switch  onClick={()=>handleAlarmActiveBtn(id)} isActive={isActive}/>
                 </Row>
             </Row>
         </BoxContainer>

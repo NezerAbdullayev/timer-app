@@ -7,24 +7,24 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Select from '@mui/material/Select';
+import { Button, FormControl, InputLabel } from '@mui/material';
 
 // components
 import Row from '../../../components/ui/Row';
-import { FormControl, InputLabel } from '@mui/material';
 import FlexRow from '../../../components/ui/FlexRow';
 
-export default function AddAlarmPopup() {
-    const [hh, setHh] = useState('');
-    const [mm, setMm] = useState('');
+// utils
+import {  formatDate } from '../../../utils/formatTime';
+
+export default function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
+    const [hh, setHh] = useState("");
+    const [mm, setMm] = useState("");
     const [selectedDate, setSelectedDate] = useState(null);
-    const [sound,setSound]=useState("")
+    const [sound, setSound] = useState('');
 
-
-
-    function handleChangeSound(event){
-      setSound(event.target.value)
+    function handleChangeSound(event) {
+        setSound(event.target.value);
     }
-
 
     const handleHourChange = (event) => {
         setHh(event.target.value);
@@ -34,10 +34,26 @@ export default function AddAlarmPopup() {
         setMm(event.target.value);
     };
 
+
+    // add new alarms button
+    function addAlarm({ hour, history, sound }) {
+        let newDate = formatDate(history) 
+
+
+
+        dispatch({ type: 'ADD_ALARM', payload: { hour, history:newDate, sound } });
+
+        // close popup
+        onToggleAlarmPopup()
+        
+    }
+
+
+
     return (
         <>
-            {/* hours start */}
-            <FlexRow className="justify-between items-center">
+            {/* hours  hh,mm start */}
+            <FlexRow className="items-center justify-between">
                 <TextField
                     select
                     label="hh"
@@ -59,7 +75,7 @@ export default function AddAlarmPopup() {
                     value={mm}
                     onChange={handleMinuteChange}
                     variant="outlined"
-                    sx={{ m: 1, minWidth: 120, }}
+                    sx={{ m: 1, minWidth: 120 }}
                 >
                     {Array.from({ length: 60 }).map((_, index) => (
                         <MenuItem key={index} value={index < 10 ? `0${index}` : `${index}`}>
@@ -71,18 +87,19 @@ export default function AddAlarmPopup() {
             {/* hours end */}
 
             {/* date start */}
-            <Row  className="ml-2">
+            <Row className="ml-2">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         label="Select Date"
                         value={selectedDate}
                         onChange={(newValue) => setSelectedDate(newValue)}
-                        slots={{ textField: TextField }} // Yeni prop
+                        slots={{ textField: TextField }} 
                     />
                 </LocalizationProvider>
             </Row>
             {/* date end */}
 
+            {/* sound start */}
             <Row className="my-2">
                 <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
                     <InputLabel id="demo-simple-select-filled-label">sound</InputLabel>
@@ -92,7 +109,7 @@ export default function AddAlarmPopup() {
                         value={sound}
                         onChange={handleChangeSound}
                     >
-                      {/* buraya musiqileri qoyacam */}
+                        {/* buraya musiqileri qoyacam */}
                         <MenuItem value=""></MenuItem>
                         <MenuItem value={10}>Ten</MenuItem>
                         <MenuItem value={20}>Twenty</MenuItem>
@@ -100,6 +117,30 @@ export default function AddAlarmPopup() {
                     </Select>
                 </FormControl>
             </Row>
+            {/* sound end */}
+
+            {/* control buttons */}
+            <FlexRow className="items-center justify-between">
+                {/* close button */}
+                <Button
+                    onClick={onToggleAlarmPopup}
+                    variant="contained"
+                    color="secondary"
+                    sx={{ background: '#281b1b' }}
+                    className="mt-4"
+                >
+                    Close
+                </Button>
+
+                {/* add alarm */}
+                <Button
+                    onClick={() => addAlarm({ hour: { hh, mm }, history: selectedDate, sound })}
+                    variant="contained"
+                    className="mt-4"
+                >
+                    Add Alarm
+                </Button>
+            </FlexRow>
         </>
     );
 }

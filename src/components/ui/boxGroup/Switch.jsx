@@ -1,10 +1,11 @@
-import { FormControlLabel, styled, Switch as SwitchControl } from '@mui/material';
+import { styled, Switch as SwitchControl } from '@mui/material';
 
-function SwitchButton({onClick,type}) {
+function SwitchButton({ isActive, onClick }) {
     const IOSSwitch = styled((props) => (
         <SwitchControl
             focusVisibleClassName=".Mui-focusVisible"
             disableRipple
+            checked={isActive}
             {...props}
         />
     ))(({ theme }) => ({
@@ -14,7 +15,7 @@ function SwitchButton({onClick,type}) {
         '& .MuiSwitch-switchBase': {
             padding: 0,
             margin: 2,
-            transitionDuration: '300ms',
+            transition: 'all 0.6s', 
             '&.Mui-checked': {
                 transform: 'translateX(16px)',
                 color: '#b8b8b8',
@@ -22,6 +23,7 @@ function SwitchButton({onClick,type}) {
                     backgroundColor: '#3f599f',
                     opacity: 1,
                     border: 0,
+                    transition: 'all 0.6s', 
                     ...theme.applyStyles('dark', {
                         backgroundColor: '#3f599f',
                     }),
@@ -56,9 +58,7 @@ function SwitchButton({onClick,type}) {
             borderRadius: 26 / 2,
             backgroundColor: '#E9E9EA',
             opacity: 1,
-            transition: theme.transitions.create(['background-color'], {
-                duration: 500,
-            }),
+            transition: 'all 0.6s', 
             ...theme.applyStyles('dark', {
                 backgroundColor: '#39393D',
             }),
@@ -66,14 +66,11 @@ function SwitchButton({onClick,type}) {
     }));
 
     return (
-        <FormControlLabel 
+        <IOSSwitch 
+            sx={{ m: 1, transition:" all 6s !important" }} 
             onClick={onClick}
-            control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
         />
     );
 }
 
 export default SwitchButton;
-
-
-

@@ -5,3 +5,25 @@ export function formatTime(time) {
     const hours = `00${Math.floor(time / 360000)}`.slice(-2);
     return `${hours}:${minutes}:${seconds}:${milliseconds}`;
 }
+
+export function formatReverseDayAndMonth(date) {
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const newDate = `${day} ${month}`;
+    return newDate;
+}
+
+export function currentFormatDate() {
+    const curDate = new Date();
+    const curFormatDate = formatReverseDayAndMonth(curDate);
+    return curFormatDate;
+}
+
+export function formatDate(formatValue) {
+    if (!formatValue) return currentFormatDate();
+
+    const date = formatValue.$d ? new Date(formatValue.$d) : new Date(formatValue);
+    const newDate = formatReverseDayAndMonth(date);
+     
+    return  newDate ? newDate : currentFormatDate()
+}

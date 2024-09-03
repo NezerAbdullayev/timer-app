@@ -11,7 +11,6 @@ function AlarmsBoxGroup({ items }) {
                     <AlarmsBox
                         key={item.id}
                         id={item.id}
-                        date={item.date}
                         hour={item.hour}
                         isActive={item.isActive}
                         history={item.history}

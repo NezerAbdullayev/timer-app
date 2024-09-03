@@ -12,8 +12,8 @@ const initialState = {
             id: 4335353,
             hour: { hh: '03', mm: '14' },
             history: '27 Aug',
-            music: 'run.az/kecdi',
-            isActive: false,
+            sound: 'run.az/kecdi',
+            isActive: true,
         },
     ],
 };
@@ -53,11 +53,12 @@ function reducer(state, action) {
             };
 
         case 'TOGGLE_ISACTIVE_ALARM':
+            console.log(action.payload);
             return {
                 ...state,
                 alarmsList: [
                     ...state.alarmsList.map((alarm) =>
-                        alarm.id == action.paylaod
+                        alarm.id == action.payload
                             ? { ...alarm, isActive: alarm.isActive == true ? false : true }
                             : alarm
                     ),
