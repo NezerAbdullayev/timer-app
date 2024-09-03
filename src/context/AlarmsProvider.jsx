@@ -35,9 +35,10 @@ function reducer(state, action) {
             };
 
         case 'DELETE_ALARM':
+            console.log(action.payload)
             return {
                 ...state,
-                alarmsList: [state.alarmsList.filter((alarm) => alarm.id !== action.payload)],
+                alarmsList: [...state.alarmsList.filter((alarm) => alarm.id !== action.payload)],
             };
 
         case 'CLEAR_ALARMSLIST':

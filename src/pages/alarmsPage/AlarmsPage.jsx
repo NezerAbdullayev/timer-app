@@ -2,9 +2,6 @@ import { useState } from 'react';
 // context hooks
 import { useAlarms } from '../../Hooks/useAlarms';
 
-// import fake data
-import { alarms } from '../../fakeData/fakeDate';
-
 // import component
 import GridColoms from '../../components/ui/GridColoms';
 import PageTitle from '../../components/ui/PageTitle';
@@ -13,29 +10,27 @@ import AlarmsBoxGroup from './components/AlarmsBoxGroup';
 import Popup from '../../components/ui/Popup';
 import AddAlarmPopup from './components/AddAlarmPopup';
 
-
 function AlarmsPage() {
-
     const [openNewAlarm, setOpenNewAlarm] = useState(false);
-
+    const [OpenDelete, setOpenDelete] = useState(false);
 
     const {
         state: { alarmsList, realTime },
         dispatch,
     } = useAlarms();
 
-    console.log(alarmsList,"realtime",realTime)
+    console.log(alarmsList, 'realtime', realTime);
+
+    function handleToggleDeleteBtn() {
+        setOpenDelete((OpenDelete) => !OpenDelete);
+    }
 
     function handleToggleAlarmBtn() {
         setOpenNewAlarm((openNewAlarm) => !openNewAlarm);
     }
 
-    function addAlarm({ hour, history, music }) {
-        dispatch({ type: 'ADD_ALARM', payload: { hour, history, music } });
-    }
-
     function deleteAlarm(deleteID) {
-        dispatch({ type: 'DELETE_ALARM', payload: { deleteID } });
+        dispatch({ type: 'DELETE_ALARM', payload:  deleteID  });
     }
 
     function clearAlarms() {
@@ -53,27 +48,29 @@ function AlarmsPage() {
         dispatch({ type: 'EDIT_ALARMS', payload: { editAlarms } });
     }
 
-    function toggleIsactiveAlarm(id) {
-        dispatch({ type: 'TOGGLE_ISACTIVE_ALARM', payload: id });
-    }
-    
     return (
         <GridColoms className="grid-rows-[20%_15%_65%]">
             <PageTitle
-                className="justify-end"
-                headerTitle="ALARM"
+                className="justify-end font-mono"
+                headerTitle="Alarm Page"
                 headerDesc="the 29 Aug, 07:50"
             />
 
-            <Toolbar onToggleAlarmPopup={handleToggleAlarmBtn} />
+            <Toolbar
+                onToggleAlarmPopup={handleToggleAlarmBtn}
+                onDeleteButton={handleToggleDeleteBtn}
+                openNewAlarm={openNewAlarm}
+            />
 
-            <AlarmsBoxGroup items={alarmsList}  />
+            <AlarmsBoxGroup
+                items={alarmsList}
+                OpenDelete={OpenDelete}
+                onDelete={deleteAlarm}
+            />
 
-            <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm} >
+            <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm}>
                 <AddAlarmPopup onToggleAlarmPopup={handleToggleAlarmBtn} dispatch={dispatch} />
             </Popup>
-            
-
         </GridColoms>
     );
 }
