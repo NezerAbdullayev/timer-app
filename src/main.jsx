@@ -7,6 +7,7 @@ import AlarmsProvider from './context/AlarmsProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
     <ThemeProvider>
+        {console.log("main")}
         <StopwatchProvider>
             <AlarmsProvider>
                 <App />

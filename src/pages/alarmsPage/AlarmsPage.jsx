@@ -15,11 +15,11 @@ function AlarmsPage() {
     const [OpenDelete, setOpenDelete] = useState(false);
 
     const {
-        state: { alarmsList, realTime },
+        state: { alarmsList },
         dispatch,
     } = useAlarms();
 
-    console.log(alarmsList, 'realtime', realTime);
+
 
     function handleToggleDeleteBtn() {
         setOpenDelete((OpenDelete) => !OpenDelete);
@@ -60,6 +60,7 @@ function AlarmsPage() {
                 onToggleAlarmPopup={handleToggleAlarmBtn}
                 onDeleteButton={handleToggleDeleteBtn}
                 openNewAlarm={openNewAlarm}
+                OpenDelete={OpenDelete}
             />
 
             <AlarmsBoxGroup

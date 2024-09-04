@@ -7,7 +7,7 @@ import {
 // import pages
 import WorldClockPage from './pages/worldClockPage/WorldClockPage'
 import StopwatchPage from './pages/stopwatchPage/StopWatchPage';   
-import Timer from './pages/timerPage/TimerPage';
+import TimerPage from './pages/timerPage/TimerPage';
 import AlarmsPage from './pages/alarmsPage/AlarmsPage';
 import ErrorPage from './pages/ErrorPage';
 
@@ -16,6 +16,7 @@ import AppLayout from './components/ui/AppLayout'
 
 
 function App() {
+
     const router = createBrowserRouter([
         {
             path: '/',
@@ -26,7 +27,7 @@ function App() {
                 { path: 'alarms', element: <AlarmsPage /> },
                 { path: 'worldclock', element: <WorldClockPage /> },
                 { path: 'stopwatch', element: <StopwatchPage /> },
-                { path: 'timer', element: <Timer /> },
+                { path: 'timer', element: <TimerPage /> },
                 { path: '*', element: <ErrorPage /> },
             ],
         },

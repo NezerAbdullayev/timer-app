@@ -62,11 +62,15 @@ function reducer(state, action) {
 function StopwatchProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    console.log("stopwatch")
+
     useEffect(() => {
         let interval;
+        console.log("tick")
 
         if (state.isRunning) {
             interval = setInterval(() => {
+
                 dispatch({ type: 'TICK' });
             }, 10);
         } 

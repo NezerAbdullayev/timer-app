@@ -47,7 +47,7 @@ export const worldClock = [
     {
         id: '431d',
         cityName: 'Kuba',
-        comparison: '4 houra getAutoHeightDuration,Tomorrow',
+        comparison: '4 houra,Tomorrow',
         clockTime: '23:02',
     },
     {

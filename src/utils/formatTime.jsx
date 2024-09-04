@@ -8,6 +8,7 @@ export function formatTime(time) {
 
 export function formatReverseDayAndMonth(date) {
     const day = date.getDate();
+
     const month = date.toLocaleString('en-US', { month: 'short' });
     const newDate = `${day} ${month}`;
     return newDate;
