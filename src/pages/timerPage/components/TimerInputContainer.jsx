@@ -1,36 +1,26 @@
 import { useState } from 'react';
-import Row from '../../../components/ui/Row';
 import TimerInput from './TimerInput';
+import FlexRow from "../../../components/ui/FlexRow"
 
 function TimerInputContainer() {
-    const [hh, setHh] = useState('00');
-    const [mm, setMm] = useState('00');
-    const [ss, SetSs] = useState('00');
+    const [time, setTime] = useState({ hh: '00', mm: '00', ss: '00' });
 
+    const handleChange = (unit) => (value) => {
+        const parsedValue = Math.max(0, Math.min(parseInt(value) || 0, unit === 'hh' ? 23 : 59));
+        setTime((prevTime) => ({
+            ...prevTime,
+            [unit]: parsedValue.toString().padStart(2, '0'),
+        }));
+    };
 
-
-    function handleChangeHour(e) {
-        setHh(e.target.value);
-    }
-
-    function handleChangeMinute(e) {
-        setMm(e.target.value);
-    }
-
-    function handleChangeSeconds(e) {
-        SetSs(e.tager.value);
-    }
-
-
-    console.log("hours->",hh,":",mm,";",ss)
+    console.log(time);
 
     return (
-        <Row>
-            <TimerInput max={23} min={0} value={hh} onChangeInput={handleChangeHour} />
-            <TimerInput max={59} min={0} value={mm} onChangeInput={handleChangeMinute} />
-            <TimerInput max={59} min={0} value={ss} onChangeInput={handleChangeSeconds} />
-            {/* <TimerInput max={23} /> */}
-        </Row>
+        <FlexRow className="item-center justify-center gap-5 my-6">
+            <TimerInput max={23} min={0} value={time.hh} onChangeInput={handleChange('hh')} />
+            <TimerInput max={59} min={0} value={time.mm} onChangeInput={handleChange('mm')}/>
+            <TimerInput max={59} min={0} value={time.ss} onChangeInput={handleChange('ss')}/>
+        </FlexRow>
     );
 }
 
