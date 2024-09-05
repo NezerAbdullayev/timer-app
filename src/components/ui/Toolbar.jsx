@@ -9,7 +9,7 @@ import Button from './Button';
 import FlexRow from './FlexRow';
 import { memo } from 'react';
 
-function Toolbar( {onToggleAlarmPopup, openNewAlarm,onDeleteButton,sort=false,OpenDelete }) {
+function Toolbar( {onToggleAlarmPopup,onDeleteButton,OpenDelete }) {
     return (
         <FlexRow className="items-center justify-end gap-4">
             {/* create button */}
@@ -22,9 +22,6 @@ function Toolbar( {onToggleAlarmPopup, openNewAlarm,onDeleteButton,sort=false,Op
                 <AddIcon sx={{ fontSize: '16px' }} />
             </Fab>
             {/* create button end */}
-
-            {/* sort and edit button */}
-            <Button type="sort">{sort ? <BsSortDown /> : <BsSortUp />} </Button>
 
             {/* theme button */}
             <Button onClick={onDeleteButton} type="open">

@@ -33,33 +33,16 @@ function AlarmsPage() {
         dispatch({ type: 'DELETE_ALARM', payload:  deleteID  });
     }
 
-    function clearAlarms() {
-        dispatch({ type: 'CLEAR_ALLALARMS' });
-    }
-
-    function editAlarms(editId, editHour, editHistory, editMusic, editIsActive) {
-        const editAlarms = {
-            id: editId,
-            hour: editHour,
-            history: editHistory,
-            music: editMusic,
-            isActive: editIsActive,
-        };
-        dispatch({ type: 'EDIT_ALARMS', payload: { editAlarms } });
-    }
-
     return (
         <GridColoms className="grid-rows-[20%_15%_65%]">
             <PageTitle
                 className="justify-end font-mono"
                 headerTitle="Alarm Page"
-                headerDesc="the 29 Aug, 07:50"
             />
 
             <Toolbar
                 onToggleAlarmPopup={handleToggleAlarmBtn}
                 onDeleteButton={handleToggleDeleteBtn}
-                openNewAlarm={openNewAlarm}
                 OpenDelete={OpenDelete}
             />
 
@@ -72,6 +55,7 @@ function AlarmsPage() {
             <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm}>
                 <AddAlarmPopup onToggleAlarmPopup={handleToggleAlarmBtn} dispatch={dispatch} />
             </Popup>
+            
         </GridColoms>
     );
 }

@@ -19,7 +19,7 @@ function TimerPage() {
 
             <TimerTitle />
 
-            <TimerInputContainer dispatch={dispatch}  isRunning={isRunning} />
+            <TimerInputContainer dispatch={dispatch}  isRunning={isRunning} isReset={isReset} />
             
             <TimerControl />
 

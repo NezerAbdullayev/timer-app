@@ -14,6 +14,7 @@ function WorldClockBoxGroup({ items }) {
                         cityName={item.cityName}
                         comparison={item.comparison}
                         clockTime={item.clockTime}
+                        offset={item.offset} 
                     />
                 ))}
         </GroupContainer>

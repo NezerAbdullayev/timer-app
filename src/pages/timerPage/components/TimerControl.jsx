@@ -3,17 +3,19 @@ import FlexRow from '../../../components/ui/FlexRow';
 import { useTimer } from '../../../Hooks/useTimer';
 
 function TimerControl() {
-    const {dispatch,state:{isRunning,isReset}} = useTimer();
-
+    const {
+        dispatch,
+        state: { isRunning, isReset },
+    } = useTimer();
 
     const handleStart = () => dispatch({ type: 'START' });
     const handleStop = () => dispatch({ type: 'PAUSE' });
     const handleReset = () => dispatch({ type: 'RESET' });
-    
+
     return (
         <FlexRow className="items-center justify-evenly gap-5">
-            {/* start condition */}
-            {!isRunning &&  (
+            {/* start  */}
+            {!isRunning && !isReset && (
                 <>
                     <Button type="muiGray" disabled={true}>
                         Reset
@@ -24,7 +26,19 @@ function TimerControl() {
                 </>
             )}
 
-            {/* pause and lop condition */}
+            {/* pause  */}
+            {!isRunning && isReset && (
+                <>
+                    <Button type="muiGray" >
+                        Reset
+                    </Button>
+                    <Button type="muiBlue" onClick={handleStart}>
+                        Start
+                    </Button>
+                </>
+            )}
+
+            {/* pause  */}
             {isRunning && (
                 <>
                     <Button type="muiGray" onClick={handleReset}>
@@ -37,7 +51,7 @@ function TimerControl() {
             )}
 
             {/* pause and reseet condition */}
-            {!isRunning && isReset && (
+            {/* {!isRunning && isReset && (
                 <>
                     <Button type="muiGray" onClick={handleReset}>
                         Reset
@@ -46,7 +60,7 @@ function TimerControl() {
                         Start
                     </Button>
                 </>
-            )}
+            )} */}
         </FlexRow>
     );
 }

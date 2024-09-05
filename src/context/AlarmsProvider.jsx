@@ -21,7 +21,7 @@ const initialState = {
 
 function reducer(state, action) {
     switch (action.type) {
-        case 'ADD_ALARM':// eslint-disable-next-line 
+        case 'ADD_ALARM': // eslint-disable-next-line
             const checkAlarm = state.alarmsList.some(
                 (alarm) =>
                     alarm.history === action.payload.history &&
@@ -66,20 +66,22 @@ function reducer(state, action) {
     }
 }
 
+// Provider component
 function AlarmsProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [isPlaying, setIsPlaying] = useState(false);
     const audioControlRef = useRef(null);
 
-    const handleAudioEnd = () => {
-        setIsPlaying(false);
-        dispatch({ type: 'RESET_ALARMS_SOUND' });
+    const playAlarmSound = (sound) => {
+        if (audioControlRef.current) {
+            audioControlRef.current.src = sound;
+            audioControlRef.current.play().then(() => setIsPlaying(true));
+        }
     };
 
     useEffect(() => {
         const interval = setInterval(() => {
             const { curTime, history: curHistory } = realTimeAndHistory();
-
             const activeAlarm = state.alarmsList.find(
                 (alarm) =>
                     alarm.history === curHistory &&
@@ -90,27 +92,30 @@ function AlarmsProvider({ children }) {
             );
 
             if (activeAlarm && !isPlaying) {
-                // Stop any other sound before playing a new one
                 dispatch({ type: 'RESET_ALARMS_SOUND' });
-
                 activeAlarm.isSound = true;
-                audioControlRef.current.src = `./public/${activeAlarm.sound}`;
-                audioControlRef.current.play().then(() => setIsPlaying(true));
+                playAlarmSound(`./public/${activeAlarm.sound}`);
             }
         }, 1000);
 
         return () => clearInterval(interval);
     }, [state.alarmsList, isPlaying]);
 
-    // ref
     useEffect(() => {
-        const activeAlarm = state.alarmsList.find((alarm) => alarm.isActive && alarm.isSound);
-        if (!activeAlarm && isPlaying) {
-            audioControlRef.current.pause();
-            audioControlRef.current.currentTime = 0;
-            setIsPlaying(false);
+        if (isPlaying) {
+            const activeAlarm = state.alarmsList.find((alarm) => alarm.isActive && alarm.isSound);
+            if (!activeAlarm) {
+                audioControlRef.current.pause();
+                audioControlRef.current.currentTime = 0;
+                setIsPlaying(false);
+            }
         }
     }, [state.alarmsList, isPlaying]);
+
+    const handleAudioEnd = () => {
+        setIsPlaying(false);
+        dispatch({ type: 'RESET_ALARMS_SOUND' });
+    };
 
     return (
         <AlarmsContext.Provider value={{ state, dispatch }}>
