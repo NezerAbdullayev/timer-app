@@ -7,12 +7,12 @@ import { useStopwatch } from '../../Hooks/useStopwatch';
 //  import components
 import GridColoms from '../../components/ui/GridColoms';
 import PageTitle from '../../components/ui/PageTitle';
-import StopwatchBoxGroup from "./components/StopwatchBoxGroup"
+import StopwatchBoxGroup from './components/StopwatchBoxGroup';
 import StopwatchInput from './components/StopwatchInput';
-import StopwatchControls from './components/StopwatchControls';
+import TimeController from './components/TimeController';
 import AllStopwatchHistoryList from './components/AllStopwatchHistoryList';
-import Row from '../../components/ui/Row';
 import HistoryButton from './components/HistoryButton';
+import Row from '../../components/ui/Row';
 
 function StopwatchPage() {
     const [historyOpen, setHistoryOpen] = useState(false);
@@ -51,7 +51,7 @@ function StopwatchPage() {
             {/* history  end*/}
 
             {/* Stopwatch control buttons */}
-            <StopwatchControls isReset={isReset} isRunning={isRunning} dispatch={dispatch} />
+            <TimeController isReset={isReset} isRunning={isRunning} dispatch={dispatch} />
         </GridColoms>
     );
 }

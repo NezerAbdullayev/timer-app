@@ -1,22 +1,16 @@
-import {
-    Navigate,
-    createBrowserRouter,
-    RouterProvider,
-} from 'react-router-dom';
+import { Navigate, createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // import pages
-import WorldClockPage from './pages/worldClockPage/WorldClockPage'
-import StopwatchPage from './pages/stopwatchPage/StopWatchPage';   
+import WorldClockPage from './pages/worldClockPage/WorldClockPage';
+import StopwatchPage from './pages/stopwatchPage/StopWatchPage';
 import TimerPage from './pages/timerPage/TimerPage';
 import AlarmsPage from './pages/alarmsPage/AlarmsPage';
 import ErrorPage from './pages/ErrorPage';
 
 // component
-import AppLayout from './components/ui/AppLayout'
-
+import AppLayout from './components/ui/AppLayout';
 
 function App() {
-
     const router = createBrowserRouter([
         {
             path: '/',

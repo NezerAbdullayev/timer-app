@@ -2,7 +2,7 @@ import { memo } from 'react';
 import Button from '../../../components/ui/Button';
 import FlexRow from '../../../components/ui/FlexRow';
 
-function StopwatchControls({ isReset, dispatch, isRunning }) {
+function TimeController({ isReset, dispatch, isRunning }) {
     const handleStart = () => dispatch({ type: 'START' });
     const handleStop = () => dispatch({ type: 'PAUSE' });
     const handleReset = () => dispatch({ type: 'RESET' });
@@ -49,4 +49,4 @@ function StopwatchControls({ isReset, dispatch, isRunning }) {
     );
 }
 
-export default memo(StopwatchControls);
+export default memo(TimeController);

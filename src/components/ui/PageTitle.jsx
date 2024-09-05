@@ -1,4 +1,3 @@
-import { memo } from "react";
 
 function PageTitle({ headerTitle, headerDesc,className }) {
     return (
@@ -9,4 +8,4 @@ function PageTitle({ headerTitle, headerDesc,className }) {
     );
 }
 
-export default memo(PageTitle);
+export default PageTitle;

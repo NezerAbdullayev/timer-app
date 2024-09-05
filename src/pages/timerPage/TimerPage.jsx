@@ -1,21 +1,32 @@
-import GridColoms from "../../components/ui/GridColoms"
-import PageTitle from "../../components/ui/PageTitle"
-import TimerInputContainer from "./components/TimerInputContainer"
-
+// import hooks
+import { useTimer } from '../../Hooks/useTimer';
+// import components
+import GridColoms from '../../components/ui/GridColoms';
+import TimerControl from './components/TimerControl';
+import TimerInputContainer from './components/TimerInputContainer';
+import TimerTitle from './components/TimerTitle';
 
 function TimerPage() {
-    return (
-        <GridColoms className="grid-rows-[20%_15%_65%]">
-            <PageTitle
-                className="justify-end"
-                headerTitle="23:37:38"
-                headerDesc="Azerbaijan Standard Time"
-            />
+    const {dispatch,state:{isRunning,isReset}} = useTimer();
 
-            <TimerInputContainer  />
+
+
+
+
+
+    return (
+        <GridColoms className="grid-rows-[15%_20%_10%_55%]">
+
+            <TimerTitle />
+
+            <TimerInputContainer dispatch={dispatch}  isRunning={isRunning} />
+            
+            <TimerControl />
+
+            {/* <TimeController dispatch={dispatch}  isRunning={isRunning} /> */}
 
         </GridColoms>
-    )
+    );
 }
 
-export default TimerPage
+export default TimerPage;

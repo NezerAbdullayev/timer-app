@@ -1,4 +1,3 @@
-
 function TimerInput({ max, min, value, onChangeInput }) {
     // Handle input sanitization and value change
     const handleKeyDown = (event) => {
@@ -22,7 +21,7 @@ function TimerInput({ max, min, value, onChangeInput }) {
             onInput={handleInput}
             min={min}
             max={max}
-            className="h-[40px] w-[50px] p-1 text-stone-950 focus:outline-none"
+            className="input-no-spinner w-[70px] bg-transparent p-1 font-mono text-5xl text-stone-50 focus:outline-none"
         />
     );
 }
