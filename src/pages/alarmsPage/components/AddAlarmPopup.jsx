@@ -1,4 +1,6 @@
+// import hooks
 import { useState } from 'react';
+import { useAlarms } from '../../../Hooks/useAlarms';
 
 // mui
 import TextField from '@mui/material/TextField';
@@ -15,7 +17,6 @@ import FlexRow from '../../../components/FlexRow';
 
 // utils
 import { formatDate, formatReverseDayAndMonth, realTimeAndHistory } from '../../../utils/formatTime';
-import { useAlarms } from '../../../Hooks/useAlarms';
 
 function AddAlarmPopup({ onToggleAlarmPopup }) {
     const { dispatch } = useAlarms();
@@ -46,10 +47,10 @@ function AddAlarmPopup({ onToggleAlarmPopup }) {
             history: curRealHistory,
         } = realTimeAndHistory();
 
-        // current budilniq time < real Time ?
+        // current alarm time <= real Time ? history +1 : history
         if (
-            Number(hour.mm) < Number(mm) &&
-            Number(hour.hh) < Number(hh) &&
+            Number(hour.mm) <= Number(mm) &&
+            Number(hour.hh) <= Number(hh) &&
             newDate == curRealHistory
         ){
             const newDateObj = new Date(newDate); 
