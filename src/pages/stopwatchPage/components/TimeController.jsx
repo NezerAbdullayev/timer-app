@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import Button from '../../../components/ui/Button';
-import FlexRow from '../../../components/ui/FlexRow';
+import Button from '../../../components/Button';
+import FlexRow from '../../../components/FlexRow';
 
 function TimeController({ isReset, dispatch, isRunning }) {
     const handleStart = () => dispatch({ type: 'START' });

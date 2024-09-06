@@ -1,13 +1,13 @@
 // import component
 import { useAlarms } from '../../../Hooks/useAlarms';
-import BoxContainer from '../../../components/ui/BoxContainer';
-import FlexRow from '../../../components/ui/FlexRow';
-import Row from '../../../components/ui/Row';
-import GridRow from '../../../components/ui/GridRow';
+import BoxContainer from '../../../components/boxGroup/BoxContainer';
+import FlexRow from '../../../components/FlexRow';
+import Row from '../../../components/Row';
+import GridRow from '../../../components/GridRow';
 // import mui component
-import Switch from '../../../components/ui/boxGroup/Switch';
+import Switch from '../../../components/boxGroup/Switch';
 
-function AlarmsBox({ id, hour: { hh, mm }, isActive, history, OpenDelete,onDelete }) {
+function AlarmsBox({ id, hour: { hh, mm }, isActive, history, OpenDelete, onDelete }) {
     const { dispatch } = useAlarms();
 
     function handleAlarmActiveBtn(id) {
@@ -18,7 +18,10 @@ function AlarmsBox({ id, hour: { hh, mm }, isActive, history, OpenDelete,onDelet
         <BoxContainer>
             {/* delete button */}
             <GridRow className={`grid place-items-center ${OpenDelete ? 'grid' : 'hidden'}`}>
-                <button onClick={()=>onDelete(id)} className="flex-0 h-10 w-10 cursor-pointer rounded-full bg-[#a2a6ac] text-stone-100  transition-all hover:bg-[#82868c]">
+                <button
+                    onClick={() => onDelete(id)}
+                    className="flex-0 h-10 w-10 cursor-pointer rounded-full bg-[#a2a6ac] text-stone-100 transition-all hover:bg-[#82868c]"
+                >
                     &#10006;
                 </button>
             </GridRow>

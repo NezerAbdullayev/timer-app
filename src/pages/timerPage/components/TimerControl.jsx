@@ -1,5 +1,5 @@
-import Button from '../../../components/ui/Button';
-import FlexRow from '../../../components/ui/FlexRow';
+import Button from '../../../components/Button';
+import FlexRow from '../../../components/FlexRow';
 import { useTimer } from '../../../Hooks/useTimer';
 
 function TimerControl() {
@@ -29,9 +29,7 @@ function TimerControl() {
             {/* pause  */}
             {!isRunning && isReset && (
                 <>
-                    <Button type="muiGray" >
-                        Reset
-                    </Button>
+                    <Button type="muiGray">Reset</Button>
                     <Button type="muiBlue" onClick={handleStart}>
                         Start
                     </Button>

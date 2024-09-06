@@ -1,7 +1,6 @@
 import { memo } from 'react';
-// import FlexRow from '../ui/FlexRow';
-import FlexRow from  "../../../components/ui/FlexRow"
-import Button from  "../../../components/ui/Button"
+import FlexRow from  "../../../components/FlexRow"
+import Button from  "../../../components/Button"
 
 function HistoryButton({ historyOpen, onOpenHistory }) {
     return (

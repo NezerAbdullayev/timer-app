@@ -2,9 +2,9 @@
 import { worldClock } from '../../fakeData/fakeDate';
 
 // import  components
-import GridColoms from '../../components/ui/GridColoms';
-import PageTitle from '../../components/ui/PageTitle';
-import Toolbar from '../../components/ui/Toolbar';
+import GridColoms from '../../components/GridColoms';
+import PageTitle from '../../components/PageTitle';
+import Toolbar from '../../components/Toolbar';
 import WorldClockBoxGroup from './components/WorldClockBoxGroup';
 import TimerTitle from '../timerPage/components/TimerTitle';
 

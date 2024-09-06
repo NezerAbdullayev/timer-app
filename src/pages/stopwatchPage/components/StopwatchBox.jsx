@@ -1,5 +1,5 @@
 // import components
-import GridRow from "../../../components/ui/GridRow"
+import GridRow from "../../../components/GridRow"
 // function
 import { formatTime } from "../../../utils/formatTime"
 

@@ -1,4 +1,4 @@
-import FlexRow from './FlexRow';
+import FlexRow from '../FlexRow';
 
 function BoxContainer({ children }) {
     return (

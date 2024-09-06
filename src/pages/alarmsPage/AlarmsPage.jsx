@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { useAlarms } from '../../Hooks/useAlarms';
 
 // import component
-import GridColoms from '../../components/ui/GridColoms';
-import PageTitle from '../../components/ui/PageTitle';
-import Toolbar from '../../components/ui/Toolbar';
+import GridColoms from '../../components/GridColoms';
+import PageTitle from '../../components/PageTitle';
+import Toolbar from '../../components/Toolbar';
 import AlarmsBoxGroup from './components/AlarmsBoxGroup';
-import Popup from '../../components/ui/Popup';
+import Popup from '../../components/Popup';
 import AddAlarmPopup from './components/AddAlarmPopup';
 
 function AlarmsPage() {
@@ -19,8 +19,6 @@ function AlarmsPage() {
         dispatch,
     } = useAlarms();
 
-
-
     function handleToggleDeleteBtn() {
         setOpenDelete((OpenDelete) => !OpenDelete);
     }
@@ -30,15 +28,12 @@ function AlarmsPage() {
     }
 
     function deleteAlarm(deleteID) {
-        dispatch({ type: 'DELETE_ALARM', payload:  deleteID  });
+        dispatch({ type: 'DELETE_ALARM', payload: deleteID });
     }
 
     return (
         <GridColoms className="grid-rows-[20%_15%_65%]">
-            <PageTitle
-                className="justify-end font-mono"
-                headerTitle="Alarm Page"
-            />
+            <PageTitle className="justify-end font-mono" headerTitle="Alarm Page" />
 
             <Toolbar
                 onToggleAlarmPopup={handleToggleAlarmBtn}
@@ -46,16 +41,11 @@ function AlarmsPage() {
                 OpenDelete={OpenDelete}
             />
 
-            <AlarmsBoxGroup
-                items={alarmsList}
-                OpenDelete={OpenDelete}
-                onDelete={deleteAlarm}
-            />
+            <AlarmsBoxGroup items={alarmsList} OpenDelete={OpenDelete} onDelete={deleteAlarm} />
 
             <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm}>
                 <AddAlarmPopup onToggleAlarmPopup={handleToggleAlarmBtn} dispatch={dispatch} />
             </Popup>
-            
         </GridColoms>
     );
 }

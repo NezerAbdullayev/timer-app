@@ -10,8 +10,8 @@ import Select from '@mui/material/Select';
 import { Button, FormControl, InputLabel } from '@mui/material';
 
 // components
-import Row from '../../../components/ui/Row';
-import FlexRow from '../../../components/ui/FlexRow';
+import Row from '../../../components/Row';
+import FlexRow from '../../../components/FlexRow';
 
 // utils
 import { formatDate } from '../../../utils/formatTime';
@@ -133,7 +133,6 @@ function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
                 >
                     Add Alarm
                 </Button>
-
             </FlexRow>
         </>
     );

@@ -9,7 +9,7 @@ import Button from './Button';
 import FlexRow from './FlexRow';
 import { memo } from 'react';
 
-function Toolbar( {onToggleAlarmPopup,onDeleteButton,OpenDelete }) {
+function Toolbar({ onToggleAlarmPopup, onDeleteButton, OpenDelete }) {
     return (
         <FlexRow className="items-center justify-end gap-4">
             {/* create button */}

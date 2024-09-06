@@ -1,6 +1,6 @@
 // import components
 import AlarmsBox from './AlarmsBox';
-import GroupContainer from '../../../components/ui/boxGroup/GroupContainer';
+import GroupContainer from '../../../components/boxGroup/GroupContainer';
 import { memo } from 'react';
 
 function AlarmsBoxGroup({ items, OpenDelete, onDelete }) {

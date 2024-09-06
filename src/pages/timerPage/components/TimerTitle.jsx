@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRealTime } from '../../../utils/getCurrentDateTime';
-import Row from '../../../components/ui/Row';
+import Row from '../../../components/Row';
 
 function TimerTitle() {
     const [realTime, setRealTime] = useState(getRealTime());

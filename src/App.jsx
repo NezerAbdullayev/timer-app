@@ -8,7 +8,7 @@ import AlarmsPage from './pages/alarmsPage/AlarmsPage';
 import ErrorPage from './pages/ErrorPage';
 
 // component
-import AppLayout from './components/ui/AppLayout';
+import AppLayout from './components/AppLayout';
 
 function App() {
     const router = createBrowserRouter([

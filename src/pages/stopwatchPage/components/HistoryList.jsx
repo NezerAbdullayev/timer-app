@@ -1,6 +1,6 @@
 // import components
 import StopwatchBox from './StopwatchBox';
-import Row from '../../../components/ui/Row';
+import Row from '../../../components/Row';
 
 function HistoryList({ historyList }) {
     const { date, laps } = historyList[1];

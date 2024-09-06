@@ -5,14 +5,14 @@ import { useState } from 'react';
 import { useStopwatch } from '../../Hooks/useStopwatch';
 
 //  import components
-import GridColoms from '../../components/ui/GridColoms';
-import PageTitle from '../../components/ui/PageTitle';
+import GridColoms from '../../components/GridColoms';
+import PageTitle from '../../components/PageTitle';
 import StopwatchBoxGroup from './components/StopwatchBoxGroup';
 import StopwatchInput from './components/StopwatchInput';
 import TimeController from './components/TimeController';
 import AllStopwatchHistoryList from './components/AllStopwatchHistoryList';
 import HistoryButton from './components/HistoryButton';
-import Row from '../../components/ui/Row';
+import Row from '../../components/Row';
 
 function StopwatchPage() {
     const [historyOpen, setHistoryOpen] = useState(false);

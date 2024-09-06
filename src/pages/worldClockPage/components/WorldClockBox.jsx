@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import BoxContainer from '../../../components/ui/BoxContainer';
-import Row from '../../../components/ui/Row';
+// import BoxContainer from '../../../components/BoxContainer';
+import BoxContainer from '../../../components/boxGroup/BoxContainer';
+import Row from '../../../components/Row';
 
 function WorldClockBox({ id, cityName = 'ede', comparison, clockTime, offset }) {
     const [time, setTime] = useState(new Date());
