@@ -46,6 +46,7 @@ function AlarmsPage() {
             <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm}>
                 <AddAlarmPopup onToggleAlarmPopup={handleToggleAlarmBtn} dispatch={dispatch} />
             </Popup>
+            
         </GridColoms>
     );
 }

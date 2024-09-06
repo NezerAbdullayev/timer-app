@@ -2,6 +2,7 @@ import GroupContainer from "../../../components/boxGroup/GroupContainer";
 import WorldClockBox from "./WorldClockBox"
 
 
+
 function WorldClockBoxGroup({ items }) {
     return (
         <GroupContainer>
@@ -11,9 +12,7 @@ function WorldClockBoxGroup({ items }) {
                     <WorldClockBox
                         key={item.id}
                         id={item.id}
-                        cityName={item.cityName}
-                        comparison={item.comparison}
-                        clockTime={item.clockTime}
+                        cityName={item.name}
                         offset={item.offset} 
                     />
                 ))}
