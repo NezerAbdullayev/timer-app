@@ -14,9 +14,12 @@ import Row from '../../../components/Row';
 import FlexRow from '../../../components/FlexRow';
 
 // utils
-import { formatDate } from '../../../utils/formatTime';
+import { formatDate, formatReverseDayAndMonth, realTimeAndHistory } from '../../../utils/formatTime';
+import { useAlarms } from '../../../Hooks/useAlarms';
 
-function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
+function AddAlarmPopup({ onToggleAlarmPopup }) {
+    const { dispatch } = useAlarms();
+
     const [hh, setHh] = useState('06');
     const [mm, setMm] = useState('00');
     const [selectedDate, setSelectedDate] = useState(null);
@@ -38,6 +41,22 @@ function AddAlarmPopup({ onToggleAlarmPopup, dispatch }) {
     function addAlarm({ hour, history, sound }) {
         let newDate = formatDate(history);
 
+        const {
+            curTime: { hh, mm },
+            history: curRealHistory,
+        } = realTimeAndHistory();
+
+        // current budilniq time < real Time ?
+        if (
+            Number(hour.mm) < Number(mm) &&
+            Number(hour.hh) < Number(hh) &&
+            newDate == curRealHistory
+        ){
+            const newDateObj = new Date(newDate); 
+            newDateObj.setDate(newDateObj.getDate() + 1); 
+    
+            newDate = formatReverseDayAndMonth(newDateObj);
+        }
         dispatch({ type: 'ADD_ALARM', payload: { hour, history: newDate, sound } });
 
         // close popup

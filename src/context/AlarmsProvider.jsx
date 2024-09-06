@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { realTimeAndHistory } from '../utils/formatTime';
+import { toast } from 'react-toastify';
 
 // Context
 export const AlarmsContext = createContext();
@@ -20,6 +21,13 @@ const initialState = {
     ],
 };
 
+// curTime
+// :
+// {hh: '19', mm: '17'}
+// history
+// :
+// "6 Sep"
+
 function reducer(state, action) {
     switch (action.type) {
         case 'ADD_ALARM': // eslint-disable-next-line
@@ -29,7 +37,7 @@ function reducer(state, action) {
                     alarm.hour?.hh === action.payload.hour?.hh &&
                     alarm.hour?.mm === action.payload.hour?.mm
             );
-
+            
             return checkAlarm
                 ? state
                 : {
@@ -130,11 +138,7 @@ function AlarmsProvider({ children }) {
         }
     }, [audioRef]);
 
-    return (
-        <AlarmsContext.Provider value={{ state, dispatch }}>
-            {children}
-        </AlarmsContext.Provider>
-    );
+    return <AlarmsContext.Provider value={{ state, dispatch }}>{children}</AlarmsContext.Provider>;
 }
 
 export default AlarmsProvider;

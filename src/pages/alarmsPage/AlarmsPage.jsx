@@ -14,21 +14,13 @@ function AlarmsPage() {
     const [openNewAlarm, setOpenNewAlarm] = useState(false);
     const [OpenDelete, setOpenDelete] = useState(false);
 
-    const {
-        state: { alarmsList },
-        dispatch,
-    } = useAlarms();
 
-    function handleToggleDeleteBtn() {
+    function handleToggleOpenDeleteBtn() {
         setOpenDelete((OpenDelete) => !OpenDelete);
     }
 
-    function handleToggleAlarmBtn() {
+    function handleToggleOpenAlarmBtn() {
         setOpenNewAlarm((openNewAlarm) => !openNewAlarm);
-    }
-
-    function deleteAlarm(deleteID) {
-        dispatch({ type: 'DELETE_ALARM', payload: deleteID });
     }
 
     return (
@@ -36,17 +28,16 @@ function AlarmsPage() {
             <PageTitle className="justify-end font-mono" headerTitle="Alarm Page" />
 
             <Toolbar
-                onToggleAlarmPopup={handleToggleAlarmBtn}
-                onDeleteButton={handleToggleDeleteBtn}
+                onToggleAlarmPopup={handleToggleOpenAlarmBtn}
+                onDeleteButton={handleToggleOpenDeleteBtn}
                 OpenDelete={OpenDelete}
             />
 
-            <AlarmsBoxGroup items={alarmsList} OpenDelete={OpenDelete} onDelete={deleteAlarm} />
+            <AlarmsBoxGroup OpenDelete={OpenDelete}  />
 
-            <Popup onToggleAlarmPopup={handleToggleAlarmBtn} openNewAlarm={openNewAlarm}>
-                <AddAlarmPopup onToggleAlarmPopup={handleToggleAlarmBtn} dispatch={dispatch} />
+            <Popup onToggleAlarmPopup={handleToggleOpenAlarmBtn} openNewAlarm={openNewAlarm}>
+                <AddAlarmPopup onToggleAlarmPopup={handleToggleOpenAlarmBtn}  />
             </Popup>
-            
         </GridColoms>
     );
 }

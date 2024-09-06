@@ -53,7 +53,6 @@ export const TimerProvider = ({ children }) => {
 
                 const totalSeconds = parseInt(hh) * 3600 + parseInt(mm) * 60 + parseInt(ss) - 1;
 
-
                 const newHours = Math.floor(totalSeconds / 3600)
                     .toString()
                     .padStart(2, '0');

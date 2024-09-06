@@ -29,7 +29,9 @@ function TimerControl() {
             {/* pause  */}
             {!isRunning && isReset && (
                 <>
-                    <Button type="muiGray">Reset</Button>
+                    <Button type="muiGray" onClick={handleReset}>
+                        Reset
+                    </Button>
                     <Button type="muiBlue" onClick={handleStart}>
                         Start
                     </Button>

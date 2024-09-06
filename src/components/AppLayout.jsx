@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // outlet
 import { Outlet } from 'react-router';
 
@@ -7,7 +9,6 @@ import Container from './Container';
 import Main from './Main';
 
 function AppLayout() {
-
     return (
         <Container>
             <Main>
@@ -15,6 +16,20 @@ function AppLayout() {
             </Main>
 
             <Footer />
+            
+            {/* toast library */}
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </Container>
     );
 }

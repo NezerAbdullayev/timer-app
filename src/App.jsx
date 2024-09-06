@@ -7,10 +7,11 @@ import TimerPage from './pages/timerPage/TimerPage';
 import AlarmsPage from './pages/alarmsPage/AlarmsPage';
 import ErrorPage from './pages/ErrorPage';
 
-// component
+// component2
 import AppLayout from './components/AppLayout';
 
 function App() {
+    console.log("app")
     const router = createBrowserRouter([
         {
             path: '/',
