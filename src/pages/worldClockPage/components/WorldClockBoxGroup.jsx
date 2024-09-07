@@ -1,21 +1,24 @@
+// components
 import GroupContainer from "../../../components/boxGroup/GroupContainer";
-import { timeZones } from "../../../data/worldClockData";
 import WorldClockBox from "./WorldClockBox"
+import { useWorldClock } from "../../../Hooks/useWorldClock";
 
 
-
-function WorldClockBoxGroup() {
+function WorldClockBoxGroup({openDelete}) {
+    
+    const {state:{worldClock}}=useWorldClock()
 
     return (
         <GroupContainer>
             {/* items map */}
-            {timeZones.length &&
-                timeZones.map((item) => (
+            {worldClock && worldClock.length>0 &&
+                worldClock.map((item) => (
                     <WorldClockBox
                         key={item.id}
                         id={item.id}
                         cityName={item.name}
                         offset={item.offset} 
+                        openDelete={openDelete}
                     />
                 ))}
         </GroupContainer>

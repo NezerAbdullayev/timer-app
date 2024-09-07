@@ -1,6 +1,4 @@
 import { useState } from 'react';
-// context hooks
-import { useAlarms } from '../../Hooks/useAlarms';
 
 // import component
 import GridColoms from '../../components/GridColoms';
@@ -12,7 +10,7 @@ import AddAlarmPopup from './components/AddAlarmPopup';
 
 function AlarmsPage() {
     const [openNewAlarm, setOpenNewAlarm] = useState(false);
-    const [OpenDelete, setOpenDelete] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
 
 
     function handleToggleOpenDeleteBtn() {
@@ -28,14 +26,14 @@ function AlarmsPage() {
             <PageTitle className="justify-end font-mono" headerTitle="Alarm Page" />
 
             <Toolbar
-                onToggleAlarmPopup={handleToggleOpenAlarmBtn}
+                onTogglePopupOpen={handleToggleOpenAlarmBtn}
                 onDeleteButton={handleToggleOpenDeleteBtn}
-                OpenDelete={OpenDelete}
+                openDelete={openDelete}
             />
 
-            <AlarmsBoxGroup OpenDelete={OpenDelete}  />
+            <AlarmsBoxGroup openDelete={openDelete}  />
 
-            <Popup onToggleAlarmPopup={handleToggleOpenAlarmBtn} openNewAlarm={openNewAlarm}>
+            <Popup onTogglePopupOpen={handleToggleOpenAlarmBtn} openNewItermBtn={openNewAlarm}>
                 <AddAlarmPopup onToggleAlarmPopup={handleToggleOpenAlarmBtn}  />
             </Popup>
         </GridColoms>

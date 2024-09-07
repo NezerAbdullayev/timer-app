@@ -1,6 +1,4 @@
 // import icons
-import { BsSortDown } from 'react-icons/bs';
-import { BsSortUp } from 'react-icons/bs';
 import { Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -9,14 +7,14 @@ import Button from './Button';
 import FlexRow from './FlexRow';
 import { memo } from 'react';
 
-function Toolbar({ onToggleAlarmPopup, onDeleteButton, OpenDelete }) {
+function Toolbar({ onTogglePopupOpen, onDeleteButton, openDelete }) {
     return (
         <FlexRow className="items-center justify-end gap-4">
             {/* create button */}
             <Fab
                 color="primary"
                 aria-label="add"
-                onClick={onToggleAlarmPopup}
+                onClick={onTogglePopupOpen}
                 sx={{ width: '35px', height: '35px' }}
             >
                 <AddIcon sx={{ fontSize: '16px' }} />
@@ -25,7 +23,7 @@ function Toolbar({ onToggleAlarmPopup, onDeleteButton, OpenDelete }) {
 
             {/* theme button */}
             <Button onClick={onDeleteButton} type="open">
-                {OpenDelete ? 'Hidden Delete' : 'Show Delete'}
+                {openDelete ? 'Hidden Delete' : 'Show Delete'}
             </Button>
         </FlexRow>
     );

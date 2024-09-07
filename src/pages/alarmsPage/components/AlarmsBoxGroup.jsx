@@ -4,7 +4,7 @@ import GroupContainer from '../../../components/boxGroup/GroupContainer';
 import { memo } from 'react';
 import { useAlarms } from '../../../Hooks/useAlarms';
 
-function AlarmsBoxGroup({ OpenDelete }) {
+function AlarmsBoxGroup({ openDelete }) {
 
     const {state:{alarmsList}}=useAlarms()
     
@@ -19,7 +19,7 @@ function AlarmsBoxGroup({ OpenDelete }) {
                         hour={item.hour}
                         isActive={item.isActive}
                         history={item.history}
-                        OpenDelete={OpenDelete}
+                        openDelete={openDelete}
                     />
                 ))
             ) : (

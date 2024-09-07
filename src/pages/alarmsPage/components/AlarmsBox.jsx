@@ -7,7 +7,7 @@ import GridRow from '../../../components/GridRow';
 // import mui component
 import Switch from '../../../components/boxGroup/Switch';
 
-function AlarmsBox({ id, hour: { hh, mm }, isActive, history, OpenDelete, }) {
+function AlarmsBox({ id, hour: { hh, mm }, isActive, history, openDelete, }) {
     const { dispatch } = useAlarms();
 
     function deleteAlarm(deleteID) {
@@ -21,7 +21,7 @@ function AlarmsBox({ id, hour: { hh, mm }, isActive, history, OpenDelete, }) {
     return (
         <BoxContainer>
             {/* delete button */}
-            <GridRow className={`grid place-items-center ${OpenDelete ? 'grid' : 'hidden'}`}>
+            <GridRow className={`grid place-items-center ${openDelete ? 'grid' : 'hidden'}`}>
                 <button
                     onClick={() => deleteAlarm(id)}
                     className="flex-0 h-10 w-10 cursor-pointer rounded-full bg-[#a2a6ac] text-stone-100 transition-all hover:bg-[#82868c]"

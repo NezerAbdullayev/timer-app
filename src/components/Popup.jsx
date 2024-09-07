@@ -1,11 +1,11 @@
 import { Backdrop, Box, Modal } from '@mui/material';
 
-export default function Popup({ children, openNewAlarm, onToggleAlarmPopup }) {
+export default function Popup({ children, openNewItermBtn, onTogglePopupOpen }) {
 
     return (
         <Modal
-            open={openNewAlarm}
-            onClose={onToggleAlarmPopup}
+            open={openNewItermBtn}
+            onClose={onTogglePopupOpen}
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{

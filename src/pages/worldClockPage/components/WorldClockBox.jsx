@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useWorldClock } from '../../../Hooks/useWorldClock';
 // import BoxContainer from '../../../components/BoxContainer';
 import BoxContainer from '../../../components/boxGroup/BoxContainer';
 import Row from '../../../components/Row';
 import GridRow from '../../../components/GridRow';
 import FlexRow from '../../../components/FlexRow';
 
-function WorldClockBox({
-    id,
-    cityName = 'ede',
-    offset,
-    OpenDelete,
-    onDelete,
-}) {
+function WorldClockBox({ id, cityName, offset, openDelete }) {
     const [time, setTime] = useState(new Date());
+    const { dispatch } = useWorldClock();
+
+    function handleClockDelete(id) {
+        dispatch({ type: 'DELETE_CLOCK', payload: id });
+    }
 
     useEffect(() => {
         const updateClock = () => {
@@ -29,13 +29,13 @@ function WorldClockBox({
         return () => clearInterval(interval);
     }, [offset]);
 
+
     return (
-        // box container bu olacaqdir
         <BoxContainer>
             {/* delete button */}
-            <GridRow className={`grid place-items-center ${OpenDelete ? 'grid' : 'hidden'}`}>
+            <GridRow className={`grid place-items-center ${openDelete ? 'grid' : 'hidden'}`}>
                 <button
-                    onClick={() => onDelete(id)}
+                    onClick={() => handleClockDelete(id)}
                     className="flex-0 h-10 w-10 cursor-pointer rounded-full bg-[#a2a6ac] text-stone-100 transition-all hover:bg-[#82868c]"
                 >
                     &#10006;

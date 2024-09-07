@@ -1,34 +1,26 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
+import { loadStateFromLocalStorage } from '../utils/loadStateFromLocalStorage';
+
+export const WorldClockContext = createContext();
 
 // initialState
 const initialState = {
-    worldClock: [
-        {
-            id: 48378,
-            name: 'New York',
-            offset: -4,
-        },
-    ],
+    worldClock: [],
 };
 
 // reducer function
 function reducer(state, action) {
     switch (action.type) {
         case 'ADD_CLOCK':
-            // eslint-disable-next-line
-            const checkClock = state.worldClock.find((clock) => clock.id === action.payload.id);
-
-            return checkClock
-                ? state
-                : {
-                      ...state,
-                      worldClock: [...state.worldClock, action.payload],
-                  };
+            return {
+                ...state,
+                worldClock: [...state.worldClock, action.payload],
+            };
 
         case 'DELETE_CLOCK':
             return {
                 ...state,
-                worldClock: state.worldClock.filter((clock) => clock.id !== action.payload.id),
+                worldClock: state.worldClock.filter((clock) => clock.id !== action.payload),
             };
 
         case 'RESET_CLOCKS':
@@ -39,16 +31,21 @@ function reducer(state, action) {
     }
 }
 
-export const WorldClockContext = createContext({ children });
+function WorldClockProvider({ children }) {
+    const [state, dispatch] = useReducer(
+        reducer,
+        loadStateFromLocalStorage('worldClockState') || initialState
+    );
 
-function WorldClockProvider() {
-    const { state, dispatch } = useReducer(reducer, initialState);
+    useEffect(() => {
+        localStorage.setItem('worldClockState', JSON.stringify(state));
+    }, [state]);
 
-    const value = {
-        state,
-        dispatch,
-    };
-    return <WorldClockContext.Provider value={value}>{children}</WorldClockContext.Provider>;
+    return (
+        <WorldClockContext.Provider value={{ state, dispatch }}>
+            {children}
+        </WorldClockContext.Provider>
+    );
 }
 
 export default WorldClockProvider;

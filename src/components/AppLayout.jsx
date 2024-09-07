@@ -20,7 +20,7 @@ function AppLayout() {
             {/* toast library */}
             <ToastContainer
                 position="top-right"
-                autoClose={3000}
+                autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -29,6 +29,7 @@ function AppLayout() {
                 draggable
                 pauseOnHover
                 theme="colored"
+                style={{ top: '100px' }}
             />
         </Container>
     );

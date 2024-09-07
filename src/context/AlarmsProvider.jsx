@@ -3,15 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 // import utils
 import { realTimeAndHistory } from '../utils/formatTime';
+import {loadStateFromLocalStorage} from "../utils/loadStateFromLocalStorage"
 
 // Context
 export const AlarmsContext = createContext();
-
-// Load initial state from localStorage
-function loadStateFromLocalStorage() {
-    const savedState = localStorage.getItem('alarmsState');
-    return savedState ? JSON.parse(savedState) : initialState;
-}
 
 // initialState
 const initialState = {
@@ -68,7 +63,10 @@ function reducer(state, action) {
 
 // Provider component
 function AlarmsProvider({ children }) {
-    const [state, dispatch] = useReducer(reducer, loadStateFromLocalStorage());
+    const [state, dispatch] = useReducer(
+        reducer,
+        loadStateFromLocalStorage('alarmsState') || initialState
+    );
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
 
