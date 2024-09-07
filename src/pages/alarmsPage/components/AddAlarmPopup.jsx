@@ -16,7 +16,12 @@ import Row from '../../../components/Row';
 import FlexRow from '../../../components/FlexRow';
 
 // utils
-import { formatDate, formatReverseDayAndMonth, realTimeAndHistory } from '../../../utils/formatTime';
+import {
+    formatDate,
+    formatReverseDayAndMonth,
+    realTimeAndHistory,
+} from '../../../utils/formatTime';
+import { parseDate } from '../../../utils/parseDate';
 
 function AddAlarmPopup({ onToggleAlarmPopup }) {
     const { dispatch } = useAlarms();
@@ -47,15 +52,19 @@ function AddAlarmPopup({ onToggleAlarmPopup }) {
             history: curRealHistory,
         } = realTimeAndHistory();
 
-        // current alarm time <= real Time ? history +1 : history
+        // current alarm time <= real Time ? Realhistory +1 : history
+
+        console.log(parseDate(newDate) < parseDate(curRealHistory));
         if (
-            Number(hour.mm) <= Number(mm) &&
-            Number(hour.hh) <= Number(hh) &&
-            newDate == curRealHistory
-        ){
-            const newDateObj = new Date(newDate); 
-            newDateObj.setDate(newDateObj.getDate() + 1); 
-    
+            (Number(hour.mm) <= Number(mm) &&
+                Number(hour.hh) <= Number(hh) &&
+                parseDate(newDate) <= parseDate(curRealHistory)) ||
+            parseDate(newDate) < parseDate(curRealHistory)
+        ) {
+            console.log('calisdi');
+            const newDateObj = new Date(curRealHistory);
+            newDateObj.setDate(newDateObj.getDate() + 1);
+
             newDate = formatReverseDayAndMonth(newDateObj);
         }
         dispatch({ type: 'ADD_ALARM', payload: { hour, history: newDate, sound } });
