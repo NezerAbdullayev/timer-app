@@ -5,6 +5,7 @@ import BoxContainer from '../../../components/boxGroup/BoxContainer';
 import Row from '../../../components/Row';
 import GridRow from '../../../components/GridRow';
 import FlexRow from '../../../components/FlexRow';
+import { getSecondaryText } from '../../../utils/getSecondaryText';
 
 function WorldClockBox({ id, cityName, offset, openDelete }) {
     const [time, setTime] = useState(new Date());
@@ -29,7 +30,6 @@ function WorldClockBox({ id, cityName, offset, openDelete }) {
         return () => clearInterval(interval);
     }, [offset]);
 
-
     return (
         <BoxContainer>
             {/* delete button */}
@@ -45,7 +45,10 @@ function WorldClockBox({ id, cityName, offset, openDelete }) {
             {/* box  start */}
             <FlexRow className="flex-1 items-center justify-between">
                 {/* city */}
-                <Row className="">{cityName}</Row>
+                <FlexRow className="flex-col gap-[2px]">
+                    <Row >{cityName}</Row>
+                    <Row className="text-stone-500 text-sm">{getSecondaryText(offset)}</Row>
+                </FlexRow>
 
                 {/* history and active button */}
                 <Row className="text-2xl text-lightMain transition-all sm:text-3xl">

@@ -20,6 +20,8 @@ import { Box, ListItem } from '@mui/material';
 // data
 import { timeZones } from '../../../data/worldClockData';
 
+import {getSecondaryText} from "../../../utils/getSecondaryText"
+
 // mui function
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -37,16 +39,6 @@ function AddNewWorldClockPipup({ onTogglePopupOpen, openNewClockBtn }) {
 
         dispatch({ type: 'ADD_CLOCK', payload: newAlarm });
         toast.success('Clock added to the list');
-    }
-
-    function getSecondaryText(offset) {
-        if (Number(offset) === 0) {
-            return 'Same as local time';
-        } else if (Number(offset) > 0) {
-            return `${offset} hours ahead`;
-        } else {
-            return `${-offset} hours behind `;
-        }
     }
 
     function isClockCheck(id) {
