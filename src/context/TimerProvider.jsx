@@ -1,7 +1,10 @@
-import { createContext, useEffect, useReducer, useRef } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { currentFormatDate } from '../utils/formatTime';
 import { loadStateFromLocalStorage } from '../utils/loadStateFromLocalStorage';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ToastPopup from '../components/ToastPopup';
 
 // Create the context
 export const TimerContext = createContext();
@@ -27,6 +30,7 @@ function reducer(state, action) {
                 ...state,
                 isRunning: true,
                 isReset: true,
+                audio: false,
             };
         case 'PAUSE':
             return { ...state, isRunning: false };
@@ -68,6 +72,12 @@ function reducer(state, action) {
                         startTime: { ...state.time },
                     },
                 ],
+            };
+
+        case 'RESET_MUSIC':
+            return {
+                ...state,
+                audio: false,
             };
 
         case 'TICK':
@@ -114,27 +124,65 @@ function reducer(state, action) {
 // Create a provider component
 export const TimerProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const timerRef = useRef(null);
 
     useEffect(() => {
+        let intervalId;
+
         if (state.isRunning) {
-            console.log('claisdi');
-            timerRef.current = setInterval(() => {
+            intervalId = setInterval(() => {
                 dispatch({ type: 'TICK' });
             }, 1000);
-            console.log(state.time);
-        } else {
-            clearInterval(timerRef.current);
         }
 
-        return () => clearInterval(timerRef.current);
-    }, [state.isRunning, state.time]);
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [state.isRunning]);
 
     useEffect(() => {
         // Save state to localStorage whenever it changes
         const objectHistory = { history: [...state.timerHistory] };
         localStorage.setItem('timerState', JSON.stringify(objectHistory));
     }, [state.timerHistory]);
+
+    useEffect(() => {
+        if (state.audio) {
+            const audio = new Audio('./public/morning_flower.mp3');
+            audio.play();
+
+            toast(
+                <ToastPopup dispatch={dispatch} message={"helllo world"} />,
+                {
+                    position: 'top-center',
+                    autoClose: 30000, 
+                    hideProgressBar: false,
+                    newestOnTop: false,
+                    closeOnClick: false,
+                    rtl: false,
+                    pauseOnFocusLoss: true,
+                    draggable: true,
+                    pauseOnHover: true,
+                    theme: 'colored',
+                    style: { top: '100px' },
+                }
+            );
+
+            // Stop the audio after 30 seconds
+            const timerId = setTimeout(() => {
+                audio.pause();
+                audio.currentTime = 0;
+                dispatch({ type: 'RESET_MUSIC' });
+            }, 1000 * 30);
+
+            // Clean up function to stop audio and clear timeout
+            return () => {
+                audio.pause();
+                audio.currentTime = 0;
+                clearTimeout(timerId);
+                dispatch({ type: 'RESET_MUSIC' });
+            };
+        }
+    }, [state.audio]);
 
     return <TimerContext.Provider value={{ state, dispatch }}>{children}</TimerContext.Provider>;
 };
