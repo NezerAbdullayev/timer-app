@@ -1,5 +1,5 @@
 // import hooks
-import { useTimer } from '../../Hooks/useTimer';
+import { useState } from 'react';
 // import components
 import GridColoms from '../../components/GridColoms';
 import TimerControl from './components/TimerControl';
@@ -7,20 +7,14 @@ import TimerInputContainer from './components/TimerInputContainer';
 import TimerTitle from './components/TimerTitle';
 
 function TimerPage() {
-    const {
-        dispatch,
-        state: { isRunning, isReset },
-    } = useTimer();
 
     return (
         <GridColoms className="grid-rows-[15%_20%_10%_55%]">
             <TimerTitle />
 
-            <TimerInputContainer dispatch={dispatch} isRunning={isRunning} isReset={isReset} />
+            <TimerInputContainer />
 
             <TimerControl />
-
-            {/* <TimeController dispatch={dispatch}  isRunning={isRunning} /> */}
         </GridColoms>
     );
 }

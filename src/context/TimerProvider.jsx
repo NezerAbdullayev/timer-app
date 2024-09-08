@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, useEffect, useReducer, useRef } from 'react';
 
 // Create the context
 export const TimerContext = createContext();
@@ -7,18 +7,25 @@ export const TimerContext = createContext();
 const initialState = {
     isRunning: false,
     isReset: false,
+    audio: false,
     time: {
         hh: '00',
         mm: '00',
         ss: '00',
     },
+    timerHistory: [],
 };
 
 // reducer
 function reducer(state, action) {
     switch (action.type) {
         case 'START':
-            return { ...state, isRunning: true, isReset: true };
+            return {
+                ...state,
+                isRunning: true,
+                isReset: true,
+                timerHistory: [...state.timerHistory, state.time],
+            };
         case 'PAUSE':
             return { ...state, isRunning: false };
         case 'RESET':
@@ -28,8 +35,52 @@ function reducer(state, action) {
                 isReset: false,
                 time: { hh: '00', mm: '00', ss: '00' },
             };
+
         case 'SET_TIME':
-            return { ...state, time: action.payload };
+            return { ...state, time: { ...state.time, ...action.payload } };
+
+        case 'RESET_HISTORY':
+            return {
+                ...state,
+                timerHistory: [],
+            };
+
+        case 'TICK':
+            let { hh, mm, ss } = state.time;
+            ss = parseInt(ss) - 1;
+
+            if (ss < 0) {
+                ss = 59;
+                mm = parseInt(mm) - 1;
+
+                if (mm < 0) {
+                    mm = 59;
+                    hh = parseInt(hh) - 1;
+
+                    if (hh < 0) {
+                        hh = '00';
+                        mm = '00';
+                        ss = '00';
+                        return {
+                            ...state,
+                            isRunning: false,
+                            isReset: false,
+                            time: { hh, mm, ss },
+                            audio: true,
+                        };
+                    }
+                }
+            }
+
+            return {
+                ...state,
+                time: {
+                    hh: hh.toString().padStart(2, '0'),
+                    mm: mm.toString().padStart(2, '0'),
+                    ss: ss.toString().padStart(2, '0'),
+                },
+            };
+
         default:
             return state;
     }
@@ -38,42 +89,20 @@ function reducer(state, action) {
 // Create a provider component
 export const TimerProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const timerRef = useRef(null);
 
     useEffect(() => {
-        let interval = null;
-
         if (state.isRunning) {
-            interval = setInterval(() => {
-                const { hh, mm, ss } = state.time;
-
-                if(hh=="00" && mm=="00" && ss=="00"){
-                    clearInterval(interval)
-                    return
-                }
-
-                const totalSeconds = parseInt(hh) * 3600 + parseInt(mm) * 60 + parseInt(ss) - 1;
-
-                const newHours = Math.floor(totalSeconds / 3600)
-                    .toString()
-                    .padStart(2, '0');
-                const newMinutes = Math.floor((totalSeconds % 3600) / 60)
-                    .toString()
-                    .padStart(2, '0');
-                const newSeconds = (totalSeconds % 60).toString().padStart(2, '0');
-
-                if(newHours=="00" && newMinutes=="00" && newSeconds=="00")
-                    dispatch({type:"PAUSE"})
-
-                dispatch({
-                    type: 'SET_TIME',
-                    payload: { hh: newHours, mm: newMinutes, ss: newSeconds },
-                });
+            console.log('claisdi');
+            timerRef.current = setInterval(() => {
+                dispatch({ type: 'TICK' });
             }, 1000);
-        } else if (!state.isRunning && interval !== null) {
-            clearInterval(interval);
+            console.log(state.time);
+        } else {
+            clearInterval(timerRef.current);
         }
 
-        return () => clearInterval(interval);
+        return () => clearInterval(timerRef.current);
     }, [state.isRunning, state.time]);
 
     return <TimerContext.Provider value={{ state, dispatch }}>{children}</TimerContext.Provider>;

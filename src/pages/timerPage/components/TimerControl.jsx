@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import Button from '../../../components/Button';
 import FlexRow from '../../../components/FlexRow';
 import { useTimer } from '../../../Hooks/useTimer';
@@ -5,10 +6,20 @@ import { useTimer } from '../../../Hooks/useTimer';
 function TimerControl() {
     const {
         dispatch,
-        state: { isRunning, isReset },
+        state: {
+            isRunning,
+            isReset,
+            time: { hh, mm, ss },
+        },
     } = useTimer();
 
-    const handleStart = () => dispatch({ type: 'START' });
+    const handleStart = () => {
+        if (hh == '00' && mm == '00' && ss === '00') {
+            toast.error("choose a time if you don't mind");
+            return;
+        }
+        dispatch({ type: 'START' });
+    };
     const handleStop = () => dispatch({ type: 'PAUSE' });
     const handleReset = () => dispatch({ type: 'RESET' });
 
