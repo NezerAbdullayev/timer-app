@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import FlexRow from './FlexRow';
 import Row from './Row';
 
-function ToastPopup({ message, dispatch }) {
+function ToastPopup({ message, dispatch, setIsPlaying }) {
     return (
         <FlexRow className="min-h-[150px] w-full flex-col justify-between">
             {/* message */}
@@ -23,7 +23,10 @@ function ToastPopup({ message, dispatch }) {
                 {/* cancel music button */}
                 <button
                     onClick={() => {
-                        dispatch({ type: 'RESET_MUSIC' });
+                        dispatch({ type:'RESET_MUSIC'});
+                        {
+                            setIsPlaying ? setIsPlaying(false) : '';
+                        }
                         toast.dismiss();
                     }}
                     style={{
