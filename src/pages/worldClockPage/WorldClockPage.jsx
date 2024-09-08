@@ -4,7 +4,7 @@ import Toolbar from '../../components/Toolbar';
 import WorldClockBoxGroup from './components/WorldClockBoxGroup';
 import TimerTitle from '../timerPage/components/TimerTitle';
 import { useState } from 'react';
-import AddNewWorldClockPopup from './components/AddNewWorldClockPopUp';
+import AddNewWorldClockPopup from "./components/AddNewWorldClockPopup"
 
 function WorldClockPage() {
     const [openNewClockBtn, setOpenNewClockBtn] = useState(false);
