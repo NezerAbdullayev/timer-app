@@ -17,6 +17,8 @@ function TimerHistory() {
         dispatch({ type: 'RESET_HISTORY' });
     };
 
+    console.log(timerHistory)
+
     return (
         <GridRow className="mb-2 h-full w-full grid-rows-[55px_1fr]">
             <FlexRow className="justify-end items-center">

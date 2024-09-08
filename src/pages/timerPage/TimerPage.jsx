@@ -9,15 +9,16 @@ import TimerTitle from './components/TimerTitle';
 function TimerPage() {
     return (
         <GridColoms className="grid-rows-[13%_29%_58%]">
-            {/* <TimerTitle />
+            <TimerTitle />
 
-            <FlexRow className=" items-center flex-wrap  justify-center gap-x-20">
+            <FlexRow className="flex-wrap items-center justify-center gap-x-20">
                 <TimerInputContainer />
 
                 <TimerControl />
             </FlexRow>
 
-            <TimerHistory /> */}
+            <TimerHistory />
+            
         </GridColoms>
     );
 }

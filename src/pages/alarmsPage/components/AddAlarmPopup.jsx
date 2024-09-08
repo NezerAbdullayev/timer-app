@@ -54,14 +54,12 @@ function AddAlarmPopup({ onToggleAlarmPopup }) {
 
         // current alarm time <= real Time ? Realhistory +1 : history
 
-        console.log(parseDate(newDate) < parseDate(curRealHistory));
         if (
             (Number(hour.mm) <= Number(mm) &&
                 Number(hour.hh) <= Number(hh) &&
                 parseDate(newDate) <= parseDate(curRealHistory)) ||
             parseDate(newDate) < parseDate(curRealHistory)
         ) {
-            console.log('calisdi');
             const newDateObj = new Date(curRealHistory);
             newDateObj.setDate(newDateObj.getDate() + 1);
 

@@ -16,7 +16,7 @@ const initialState = {
         mm: '00',
         ss: '00',
     },
-    // timerHistory: loadStateFromLocalStorage('alarmsState') || [],
+    timerHistory: loadStateFromLocalStorage('timerState')?.history || [],
 };
 
 // reducer
@@ -132,7 +132,8 @@ export const TimerProvider = ({ children }) => {
 
     useEffect(() => {
         // Save state to localStorage whenever it changes
-        localStorage.setItem('alarmsState', JSON.stringify(state.timerHistory));
+        const objectHistory = { history: [...state.timerHistory] };
+        localStorage.setItem('timerState', JSON.stringify(objectHistory));
     }, [state.timerHistory]);
 
     return <TimerContext.Provider value={{ state, dispatch }}>{children}</TimerContext.Provider>;
