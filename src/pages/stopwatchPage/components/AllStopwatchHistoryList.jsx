@@ -1,7 +1,12 @@
 import { memo } from 'react';
 import HistoryList from './HistoryList';
+import { useStopwatch } from '../../../Hooks/useStopwatch';
 
-function AllStopwatchHistoryList({ history, historyOpen }) {
+function AllStopwatchHistoryList( {historyOpen }) {
+    const {
+        state: { history },
+    } = useStopwatch();
+
     const historyEntries = Object.entries(history);
 
     return (

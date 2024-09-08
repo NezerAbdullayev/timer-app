@@ -1,15 +1,17 @@
-// import hooks 
-import { memo } from 'react';
-
+import { useStopwatch } from '../../../Hooks/useStopwatch';
 // import component
 import StopwatchBox from './StopWatchBox';
 import GridColoms from '../../../components/GridColoms';
 import GroupContainer from '../../../components/boxGroup/GroupContainer';
 
-function StopWatchBoxGroup({ history, historyOpen }) {
+function StopWatchBoxGroup({ historyOpen }) {
+    const {
+        state: { lapHistory:history },
+    } = useStopwatch();
+
     return (
         <div
-            className={`perspective-lg backface-hidden absolute left-0 top-0 z-10 grid h-full w-full grid-rows-[40px_1fr] justify-items-center transition-all duration-500 bg-[#57534e38]`}
+            className={`perspective-lg backface-hidden absolute left-0 top-0 z-10 grid h-full w-full grid-rows-[40px_1fr] justify-items-center bg-[#57534e38] transition-all duration-500`}
             style={{ transform: historyOpen ? 'rotateY(180deg)' : 'rotateY(0)' }}
         >
             {/* history title */}
@@ -34,4 +36,4 @@ function StopWatchBoxGroup({ history, historyOpen }) {
     );
 }
 
-export default memo(StopWatchBoxGroup);
+export default StopWatchBoxGroup;

@@ -19,15 +19,12 @@ function StopwatchPage() {
 
     // context hooks
     const {
-        state: { lapHistory, history, isRunning, isReset },
-        dispatch,
+        state: { lapHistory },
     } = useStopwatch();
-
+    
     function toggleHistory() {
         setHistoryOpen((historyOpen) => !historyOpen);
     }
-
-    // const handleClearHistory = () => dispatch({ type: 'CLEAR_HISTORY' });
 
     return (
         <GridColoms className="grid-rows-[20%_10%_55%_15%]">
@@ -45,13 +42,13 @@ function StopwatchPage() {
 
             {/* history */}
             <Row className="perspective-lg relative z-10 h-full w-full">
-                <StopwatchBoxGroup history={lapHistory} historyOpen={historyOpen} />
-                <AllStopwatchHistoryList history={history} historyOpen={historyOpen} />
+                <StopwatchBoxGroup historyOpen={historyOpen} />
+                <AllStopwatchHistoryList historyOpen={historyOpen} />
             </Row>
             {/* history  end*/}
 
             {/* Stopwatch control buttons */}
-            <TimeController isReset={isReset} isRunning={isRunning} dispatch={dispatch} />
+            <TimeController />
         </GridColoms>
     );
 }

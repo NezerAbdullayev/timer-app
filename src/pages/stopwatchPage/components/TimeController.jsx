@@ -1,8 +1,11 @@
-import { memo } from 'react';
+import { useStopwatch } from '../../../Hooks/useStopwatch';
+// components
 import Button from '../../../components/Button';
 import FlexRow from '../../../components/FlexRow';
 
-function TimeController({ isReset, dispatch, isRunning }) {
+function TimeController() {
+    const {state:{ isRunning,isReset},dispatch}=useStopwatch()
+
     const handleStart = () => dispatch({ type: 'START' });
     const handleStop = () => dispatch({ type: 'PAUSE' });
     const handleReset = () => dispatch({ type: 'RESET' });
@@ -49,4 +52,4 @@ function TimeController({ isReset, dispatch, isRunning }) {
     );
 }
 
-export default memo(TimeController);
+export default TimeController;
