@@ -1,4 +1,7 @@
 import { createContext, useEffect, useReducer, useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { currentFormatDate } from '../utils/formatTime';
+import { loadStateFromLocalStorage } from '../utils/loadStateFromLocalStorage';
 
 // Create the context
 export const TimerContext = createContext();
@@ -13,7 +16,7 @@ const initialState = {
         mm: '00',
         ss: '00',
     },
-    timerHistory: [],
+    // timerHistory: loadStateFromLocalStorage('alarmsState') || [],
 };
 
 // reducer
@@ -24,7 +27,6 @@ function reducer(state, action) {
                 ...state,
                 isRunning: true,
                 isReset: true,
-                timerHistory: [...state.timerHistory, state.time],
             };
         case 'PAUSE':
             return { ...state, isRunning: false };
@@ -43,6 +45,29 @@ function reducer(state, action) {
             return {
                 ...state,
                 timerHistory: [],
+            };
+
+        case 'DELETE_HISTORY_ITEM':
+            return {
+                ...state,
+                timerHistory: [
+                    ...state.timerHistory.filter(
+                        (historyItem) => historyItem.id !== action.payload
+                    ),
+                ],
+            };
+
+        case 'ADD_TO_HISTORY':
+            return {
+                ...state,
+                timerHistory: [
+                    ...state.timerHistory,
+                    {
+                        id: uuidv4(),
+                        date: currentFormatDate(),
+                        startTime: { ...state.time },
+                    },
+                ],
             };
 
         case 'TICK':
@@ -104,6 +129,11 @@ export const TimerProvider = ({ children }) => {
 
         return () => clearInterval(timerRef.current);
     }, [state.isRunning, state.time]);
+
+    useEffect(() => {
+        // Save state to localStorage whenever it changes
+        localStorage.setItem('alarmsState', JSON.stringify(state.timerHistory));
+    }, [state.timerHistory]);
 
     return <TimerContext.Provider value={{ state, dispatch }}>{children}</TimerContext.Provider>;
 };

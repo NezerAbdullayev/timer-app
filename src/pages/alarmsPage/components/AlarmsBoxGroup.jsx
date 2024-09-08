@@ -5,16 +5,17 @@ import { memo } from 'react';
 import { useAlarms } from '../../../Hooks/useAlarms';
 
 function AlarmsBoxGroup({ openDelete }) {
+    const {
+        state: { alarmsList },
+    } = useAlarms();
 
-    const {state:{alarmsList}}=useAlarms()
-    
     return (
         <GroupContainer>
             {/* items map */}
-            {alarmsList.length > 0 ? (
+            {alarmsList && alarmsList.length > 0 ? (
                 alarmsList.map((item) => (
                     <AlarmsBox
-                        key={item.id }
+                        key={item.id}
                         id={item.id}
                         hour={item.hour}
                         isActive={item.isActive}

@@ -9,20 +9,16 @@ function TimerInputContainer() {
         dispatch,
     } = useTimer();
 
-    console.log(time);
-
     const { hh = '00', mm = '00', ss = '00' } = time;
 
     function onChangeInput(e) {
         const { name, value } = e.target;
 
-        // Sanitizasiya və Validasiya
         const parsedValue = Math.max(
             0,
             Math.min(parseInt(value.replace(/[^0-9]/g, '')) || 0, name === 'hh' ? 23 : 59)
         );
 
-        // Dəyəri Dispatch etmək
         dispatch({
             type: 'SET_TIME',
             payload: { [name]: parsedValue.toString().padStart(2, '0') },
@@ -30,7 +26,7 @@ function TimerInputContainer() {
     }
 
     return (
-        <FlexRow className="my-6 items-center justify-center">
+        <FlexRow className="my-6 items-start justify-center">
             {/* hour */}
             <FlexRow className="flex-col items-center text-sm">
                 <Row className="text-stone-400">hour</Row>

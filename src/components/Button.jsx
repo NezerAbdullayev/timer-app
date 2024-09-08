@@ -37,7 +37,7 @@ function Button({ children, type, className, onClick, disabled = false }) {
                 onClick={onClick}
                 variant="contained"
                 sx={{
-                    background: type === 'muiGray' ? 'gray' : '#007bff',
+                    background: type === 'muiGray' ? '#96949472' : '#007bff',
                     borderRadius: '50px',
                     padding: '20px 30px',
                     width: '90px',
@@ -46,7 +46,7 @@ function Button({ children, type, className, onClick, disabled = false }) {
                     color: '#ffffff',
                     cursor: disabled ? 'not-allowed' : 'pointer',
                     '&.Mui-disabled': {
-                        backgroundColor: type === 'muiGray' ? '#3e3d3d8f' : '#0056b3',
+                        backgroundColor: type === 'muiGray' ? '#3c3c3ca6' : '#0056b3',
                         color: '#ffffff',
                         boxShadow: 'none',
                         cursor: 'not-allowed',
@@ -65,13 +65,13 @@ function Button({ children, type, className, onClick, disabled = false }) {
                 variant="contained"
                 onClick={onClick}
                 sx={{
-                    background:'##027bff',
+                    background: '##027bff',
                     borderRadius: '50px',
                     padding: '8px 18px',
-                    height:"auto",
-                    width:"140px",
-                    fontSize:"14px",
-                    color:"white",
+                    height: 'auto',
+                    width: '140px',
+                    fontSize: '14px',
+                    color: 'white',
                     textTransform: 'capitalize',
                     display: 'inline-flex',
                     cursor: disabled ? 'not-allowed' : 'pointer',
