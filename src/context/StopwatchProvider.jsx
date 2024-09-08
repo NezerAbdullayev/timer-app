@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { getCurrentDateTime } from '../utils/getCurrentDateTime';
+import { loadStateFromLocalStorage } from '../utils/loadStateFromLocalStorage';
 
 //  context
 export const StopwatchContext = createContext();
@@ -15,7 +16,7 @@ const initialState = {
     isReset: false,
     historyDate: '',
     lapHistory: [],
-    history: [],
+    history:loadStateFromLocalStorage("stopwatch") || [],
 };
 
 // reducer
@@ -62,6 +63,8 @@ function reducer(state, action) {
 function StopwatchProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    console.log(history)
+
     useEffect(() => {
         let interval;
         if (state.isRunning) {
@@ -80,6 +83,12 @@ function StopwatchProvider({ children }) {
         state,
         dispatch,
     };
+
+
+    useEffect(()=>{
+        // Save state to localStorage whenever it changes
+        localStorage.setItem("stopwatch",JSON.stringify(state.history))
+    },[state.history])
 
     return <StopwatchContext.Provider value={value}>{children}</StopwatchContext.Provider>;
 }
