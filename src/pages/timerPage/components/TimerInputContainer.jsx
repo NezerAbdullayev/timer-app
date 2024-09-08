@@ -29,7 +29,7 @@ function TimerInputContainer() {
         <FlexRow className="my-6 items-start justify-center">
             {/* hour */}
             <FlexRow className="flex-col items-center text-sm">
-                <Row className="text-stone-400">hour</Row>
+                <Row className="text-stone-700 dark:text-stone-400">hour</Row>
                 <TimerInput
                     max={23}
                     min={0}
@@ -43,7 +43,7 @@ function TimerInputContainer() {
             <span className="mt-4 text-3xl">:</span>
             {/* minute */}
             <FlexRow className="flex-col items-center text-sm">
-                <Row className="text-stone-400">minute</Row>
+                <Row className="text-stone-700 dark:text-stone-400">minute</Row>
                 <TimerInput
                     max={59}
                     min={0}
@@ -58,7 +58,7 @@ function TimerInputContainer() {
 
             {/* seconds */}
             <FlexRow className="flex-col items-center text-sm">
-                <Row className="text-stone-400">seconds</Row>
+                <Row className="text-stone-700 dark:text-stone-400">seconds</Row>
                 <TimerInput
                     max={59}
                     min={0}

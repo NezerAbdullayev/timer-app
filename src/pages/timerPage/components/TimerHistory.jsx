@@ -17,13 +17,13 @@ function TimerHistory() {
         dispatch({ type: 'RESET_HISTORY' });
     };
 
-    console.log(timerHistory)
+    console.log(timerHistory);
 
     return (
         <GridRow className="mb-2 h-full w-full grid-rows-[55px_1fr]">
-            <FlexRow className="justify-end items-center">
+            <FlexRow className="items-center justify-end">
                 <Row>
-                    <Button variant="contained" sx={{fontSize:"10px"}} onClick={resetHistory}>
+                    <Button variant="contained" sx={{ fontSize: '10px' }} onClick={resetHistory}>
                         Reset History
                     </Button>
                 </Row>
@@ -43,16 +43,14 @@ function TimerHistory() {
                 <GroupContainer>
                     {timerHistory &&
                         timerHistory.length > 0 &&
-                        timerHistory
-                            .reverse()
-                            .map((item) => (
-                                <TimerBox
-                                    key={item.id}
-                                    id={item.id}
-                                    date={item.date}
-                                    time={item.startTime}
-                                />
-                            ))}
+                        timerHistory.map((item) => (
+                            <TimerBox
+                                key={item.id}
+                                id={item.id}
+                                date={item.date}
+                                time={item.startTime}
+                            />
+                        ))}
                 </GroupContainer>
             </GridColoms>
         </GridRow>

@@ -151,7 +151,7 @@ export const TimerProvider = ({ children }) => {
             audio.play();
 
             toast(
-                <ToastPopup dispatch={dispatch} message={"helllo world"} />,
+                <ToastPopup dispatch={dispatch} message={"Alarm is ringing!"} />,
                 {
                     position: 'top-center',
                     autoClose: 30000, 

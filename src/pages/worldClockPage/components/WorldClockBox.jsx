@@ -46,8 +46,8 @@ function WorldClockBox({ id, cityName, offset, openDelete }) {
             <FlexRow className="flex-1 items-center justify-between">
                 {/* city */}
                 <FlexRow className="flex-col gap-[2px]">
-                    <Row >{cityName}</Row>
-                    <Row className="text-stone-500 text-sm">{getSecondaryText(offset)}</Row>
+                    <Row className="text-stone-50 ">{cityName}</Row>
+                    <Row className="text-sm dark:text-stone-500 text-stone-300">{getSecondaryText(offset)}</Row>
                 </FlexRow>
 
                 {/* history and active button */}

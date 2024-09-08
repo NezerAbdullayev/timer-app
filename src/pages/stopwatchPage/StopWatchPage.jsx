@@ -27,7 +27,7 @@ function StopwatchPage() {
     }
 
     return (
-        <GridColoms className="grid-rows-[20%_10%_55%_15%]">
+        <GridColoms className="grid-rows-[20%_10%_60%_10%]">
             {/*  header stopwatch start */}
             <PageTitle
                 className="justify-center"

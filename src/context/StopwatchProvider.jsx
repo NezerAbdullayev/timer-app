@@ -63,7 +63,6 @@ function reducer(state, action) {
 function StopwatchProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    console.log(history)
 
     useEffect(() => {
         let interval;

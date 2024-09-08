@@ -13,7 +13,7 @@ function TimerBox({ id, time: { hh, mm, ss }, date }) {
     }
 
     return (
-        <GridRow className="grid-cols-3 text-stone-400 justify-items-center">
+        <GridRow className="grid-cols-3 text-stone-600 dark:text-stone-400 justify-items-center">
             <Row>{date}</Row>
 
             <FlexRow className="items-center gap-[2px]">
