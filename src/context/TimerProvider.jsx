@@ -147,7 +147,7 @@ export const TimerProvider = ({ children }) => {
 
     useEffect(() => {
         if (state.audio) {
-            const audio = new Audio('./public/morning_flower.mp3');
+            const audio = new Audio('/morning_flower.mp3');
             audio.play();
 
             toast(
