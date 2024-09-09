@@ -1,6 +1,6 @@
 import { useStopwatch } from '../../../Hooks/useStopwatch';
 // import component
-import StopwatchBox from './StopWatchBox';
+import StopwatchBox from "./StopwatchBox"
 import GridColoms from '../../../components/GridColoms';
 import GroupContainer from '../../../components/boxGroup/GroupContainer';
 
