@@ -19,7 +19,7 @@ const initialState = {
 
 function reducer(state, action) {
     switch (action.type) {
-        case 'ADD_ALARM': // eslint-disable-next-line
+        case 'ADD_ALARM': // eslint-disable-next-line 
             const checkAlarmInList = state.alarmsList.some(
                 (alarm) =>
                     alarm.history === action.payload.history &&
@@ -49,7 +49,7 @@ function reducer(state, action) {
                 audio: false,
                 soundMusic: '',
                 alarmsList: state.alarmsList.map((alarm) =>
-                    alarm.isSound ? { ...alarm, isSound: false, isActive: false } : alarm
+                    alarm.isSound ? { ...alarm, isSound: true, isActive: false } : alarm
                 ),
             };
 

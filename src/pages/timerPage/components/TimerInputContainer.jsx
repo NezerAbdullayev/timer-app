@@ -26,7 +26,7 @@ function TimerInputContainer() {
     }
 
     return (
-        <FlexRow className="my-6 items-start justify-center">
+        <FlexRow className="my-6 items-center justify-center">
             {/* hour */}
             <FlexRow className="flex-col items-center text-sm">
                 <Row className="text-stone-700 dark:text-stone-400">hour</Row>
