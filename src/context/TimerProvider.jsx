@@ -147,25 +147,22 @@ export const TimerProvider = ({ children }) => {
 
     useEffect(() => {
         if (state.audio) {
-            const audio = new Audio('./public/morning_flower.mp3');
+            const audio = new Audio('./src/assets/audio/morning_flower.mp3');
             audio.play();
 
-            toast(
-                <ToastPopup dispatch={dispatch} message={"Alarm is ringing!"} />,
-                {
-                    position: 'top-center',
-                    autoClose: 30000, 
-                    hideProgressBar: false,
-                    newestOnTop: false,
-                    closeOnClick: false,
-                    rtl: false,
-                    pauseOnFocusLoss: true,
-                    draggable: true,
-                    pauseOnHover: true,
-                    theme: 'colored',
-                    style: { top: '100px' },
-                }
-            );
+            toast(<ToastPopup dispatch={dispatch} message={'Alarm is ringing!'} />, {
+                position: 'top-center',
+                autoClose: 30000,
+                hideProgressBar: false,
+                newestOnTop: false,
+                closeOnClick: false,
+                rtl: false,
+                pauseOnFocusLoss: true,
+                draggable: true,
+                pauseOnHover: true,
+                theme: 'colored',
+                style: { top: '100px' },
+            });
 
             // Stop the audio after 30 seconds
             const timerId = setTimeout(() => {
