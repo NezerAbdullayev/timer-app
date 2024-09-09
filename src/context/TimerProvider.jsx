@@ -147,7 +147,7 @@ export const TimerProvider = ({ children }) => {
 
     useEffect(() => {
         if (state.audio) {
-            const audio = new Audio('./src/assets/audio/morning_flower.mp3');
+            const audio = new Audio('/audio/morning_flower.mp3');
             audio.play();
 
             toast(<ToastPopup dispatch={dispatch} message={'Alarm is ringing!'} />, {

@@ -120,7 +120,7 @@ function AlarmsProvider({ children }) {
 
     useEffect(() => {
         if (state.audio && state.soundMusic) {
-            const audio = new Audio(`./src/assets/audio/${state.soundMusic}`);
+            const audio = new Audio(`/audio/${state.soundMusic}`);
             audio.play();
 
             toast(
