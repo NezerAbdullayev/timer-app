@@ -18,7 +18,6 @@ function TimerPage() {
             </FlexRow>
 
             <TimerHistory />
-            
         </GridColoms>
     );
 }

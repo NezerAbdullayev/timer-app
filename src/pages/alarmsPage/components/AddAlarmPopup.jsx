@@ -22,26 +22,40 @@ import {
     realTimeAndHistory,
 } from '../../../utils/formatTime';
 import { parseDate } from '../../../utils/parseDate';
+import NumberInput from '../../../components/NumberInput';
 
 function AddAlarmPopup({ onToggleAlarmPopup }) {
+    // context
     const { dispatch } = useAlarms();
 
-    const [hh, setHh] = useState('06');
-    const [mm, setMm] = useState('00');
+    // hours
+    const [hour, setHour] = useState({
+        hh: '06',
+        mm: '00',
+    });
+
+    console.log(hour);
+
+    // history
     const [selectedDate, setSelectedDate] = useState(null);
     const [sound, setSound] = useState('samsung_prelude.mp3');
+
+    //
+    const handleChangeHour = (e) => {
+        let { name, value, min, max } = e.target;
+
+        if (value.startsWith('0') && value.length > 1) {
+            value = value.replace(/^0+/, '');
+        }
+
+        if (value === '' || (value >= Number(min) && value <= Number(max))) {
+            setHour((hour) => ({ ...hour, [name]: value.toString().padStart(2, '0') }));
+        }
+    };
 
     function handleChangeSound(event) {
         setSound(event.target.value);
     }
-
-    const handleHourChange = (event) => {
-        setHh(event.target.value);
-    };
-
-    const handleMinuteChange = (event) => {
-        setMm(event.target.value);
-    };
 
     // add new alarms button
     function addAlarm({ hour, history, sound }) {
@@ -74,42 +88,31 @@ function AddAlarmPopup({ onToggleAlarmPopup }) {
     return (
         <>
             {/* hours  hh,mm start */}
-            <FlexRow className="items-center justify-between">
-                <TextField
-                    select
-                    label="hh"
-                    value={hh}
-                    onChange={handleHourChange}
-                    variant="outlined"
-                    sx={{ m: 1, minWidth: 120 }}
-                >
-                    {Array.from({ length: 24 }).map((_, index) => (
-                        <MenuItem key={index} value={index < 10 ? `0${index}` : `${index}`}>
-                            {index < 10 ? `0${index}` : `${index}`}
-                        </MenuItem>
-                    ))}
-                </TextField>
-
-                <TextField
-                    select
-                    label="mm"
-                    value={mm}
-                    onChange={handleMinuteChange}
-                    variant="outlined"
-                    sx={{ m: 1, minWidth: 120 }}
-                >
-                    {Array.from({ length: 60 }).map((_, index) => (
-                        <MenuItem key={index} value={index < 10 ? `0${index}` : `${index}`}>
-                            {index < 10 ? `0${index}` : `${index}`}
-                        </MenuItem>
-                    ))}
-                </TextField>
+            <FlexRow className="mb-3 items-center justify-between gap-3">
+                {/* hour */}
+                <NumberInput
+                    label={'Hour'}
+                    min={0}
+                    max={23}
+                    onChange={handleChangeHour}
+                    value={hour.hh}
+                    name="hh"
+                />
+                {/* minute */}
+                <NumberInput
+                    label={'Minute'}
+                    min={0}
+                    max={59}
+                    onChange={handleChangeHour}
+                    value={hour.mm}
+                    name="mm"
+                />
             </FlexRow>
             {/* hours end */}
 
-            {/* date start */}
-            <Row className="ml-2">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {/* history start */}
+            <Row className="w-full">
+                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ minWidth: '100%' }}>
                     <DatePicker
                         label="Select Date"
                         value={selectedDate}
@@ -118,11 +121,11 @@ function AddAlarmPopup({ onToggleAlarmPopup }) {
                     />
                 </LocalizationProvider>
             </Row>
-            {/* date end */}
+            {/* history end */}
 
             {/* sound start */}
             <Row className="my-2">
-                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+                <FormControl variant="filled" sx={{ m: 0, minWidth: '90%' }}>
                     <InputLabel id="demo-simple-select-filled-label">sound</InputLabel>
                     <Select
                         labelId="demo-simple-select-filled-label"
@@ -154,7 +157,7 @@ function AddAlarmPopup({ onToggleAlarmPopup }) {
 
                 {/* add alarm */}
                 <Button
-                    onClick={() => addAlarm({ hour: { hh, mm }, history: selectedDate, sound })}
+                    onClick={() => addAlarm({ hour, history: selectedDate, sound })}
                     variant="contained"
                     className="mt-4"
                 >
