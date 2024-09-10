@@ -34,8 +34,6 @@ function AddAlarmPopup({ onToggleAlarmPopup }) {
         mm: '00',
     });
 
-    console.log(hour);
-
     // history
     const [selectedDate, setSelectedDate] = useState(null);
     const [sound, setSound] = useState('samsung_prelude.mp3');

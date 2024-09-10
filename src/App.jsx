@@ -11,7 +11,6 @@ import ErrorPage from './pages/ErrorPage';
 import AppLayout from './components/AppLayout';
 
 function App() {
-    console.log("app")
     const router = createBrowserRouter([
         {
             path: '/',
