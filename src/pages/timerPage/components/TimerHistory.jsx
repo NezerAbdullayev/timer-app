@@ -17,8 +17,6 @@ function TimerHistory() {
         dispatch({ type: 'RESET_HISTORY' });
     };
 
-    console.log(timerHistory);
-
     return (
         <GridRow className="mb-2 h-full w-full grid-rows-[55px_1fr]">
             <FlexRow className="items-center justify-end">
@@ -49,6 +47,7 @@ function TimerHistory() {
                                 id={item.id}
                                 date={item.date}
                                 time={item.startTime}
+                                dispatch={dispatch}
                             />
                         ))}
                 </GroupContainer>

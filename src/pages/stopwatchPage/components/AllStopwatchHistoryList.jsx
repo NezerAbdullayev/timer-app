@@ -47,6 +47,6 @@ function AllStopwatchHistoryList({ historyOpen }) {
     );
 }
 
-export default memo(AllStopwatchHistoryList);
+export default AllStopwatchHistoryList;
 
 // test->  history = {  realTime1:[ {id:244,time:0394,...},{...},{..},{..} ] ; realTime2:[...]  ; realtime3:[..]  }

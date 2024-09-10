@@ -5,7 +5,6 @@ import AddIcon from '@mui/icons-material/Add';
 // import components
 import Button from './Button';
 import FlexRow from './FlexRow';
-import { memo } from 'react';
 
 function Toolbar({ onTogglePopupOpen, onDeleteButton, openDelete }) {
     return (
@@ -29,4 +28,4 @@ function Toolbar({ onTogglePopupOpen, onDeleteButton, openDelete }) {
     );
 }
 
-export default memo(Toolbar);
+export default Toolbar;

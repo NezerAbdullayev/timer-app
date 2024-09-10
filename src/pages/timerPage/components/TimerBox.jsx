@@ -2,11 +2,9 @@ import { Button } from '@mui/material';
 import FlexRow from '../../../components/FlexRow';
 import GridRow from '../../../components/GridRow';
 import Row from '../../../components/Row';
-import { useTimer } from '../../../Hooks/useTimer';
+import { memo } from 'react';
 
-function TimerBox({ id, time: { hh, mm, ss }, date }) {
-
-    const {dispatch}=useTimer()
+function TimerBox({ id, time: { hh, mm, ss }, date,dispatch }) {
 
     const deleteHistoryItem=(id)=>{
         dispatch({type:"DELETE_HISTORY_ITEM",payload:id})
@@ -42,4 +40,4 @@ function TimerBox({ id, time: { hh, mm, ss }, date }) {
     );
 }
 
-export default TimerBox;
+export default memo(TimerBox);
