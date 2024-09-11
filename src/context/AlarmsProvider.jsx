@@ -19,7 +19,7 @@ const initialState = {
 
 function reducer(state, action) {
     switch (action.type) {
-        case 'ADD_ALARM': // eslint-disable-next-line 
+        case 'ADD_ALARM': // eslint-disable-next-line
             const checkAlarmInList = state.alarmsList.some(
                 (alarm) =>
                     alarm.history === action.payload.history &&
