@@ -20,7 +20,12 @@ function WorldClockBox({ id, cityName, offset, openDelete }) {
             const currentTime = new Date();
             const utcTime = currentTime.getTime() + currentTime.getTimezoneOffset() * 60000;
             const localTime = new Date(utcTime + 3600000 * offset);
-            setTime(localTime);
+
+            if (
+                currentTime.getMinutes() > time.getMinutes()  && Number(currentTime.getMinutes()) !== 0
+            ) {
+                setTime(localTime);
+            }
         };
 
         updateClock();
@@ -28,7 +33,7 @@ function WorldClockBox({ id, cityName, offset, openDelete }) {
         const interval = setInterval(updateClock, 1000);
 
         return () => clearInterval(interval);
-    }, [offset]);
+    }, [offset, time]);
 
     return (
         <BoxContainer>
@@ -46,8 +51,10 @@ function WorldClockBox({ id, cityName, offset, openDelete }) {
             <FlexRow className="flex-1 items-center justify-between">
                 {/* city */}
                 <FlexRow className="flex-col gap-[2px]">
-                    <Row className="text-stone-50 ">{cityName}</Row>
-                    <Row className="text-sm dark:text-stone-500 text-stone-300">{getSecondaryText(offset)}</Row>
+                    <Row className="text-stone-50">{cityName}</Row>
+                    <Row className="text-sm text-stone-300 dark:text-stone-500">
+                        {getSecondaryText(offset)}
+                    </Row>
                 </FlexRow>
 
                 {/* history and active button */}
